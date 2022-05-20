@@ -8,15 +8,23 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import java.awt.*;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
 /* Tabelas  */
 
 class InstructionStatus {
 
-    String title = "Instruction Status tefr";
+    String title = "Instruction Status";
     String[] column = { "Instruction", "Issue", "Execute", "Write Result"};
     ArrayList<String> instruction = new ArrayList<String>();
     ArrayList<String> issue = new ArrayList<String>();
@@ -42,19 +50,33 @@ class InstructionStatus {
         return column[i];
     }
 
+
     String getInstruction(int index) {
         return instruction.get(index);
     }
+
     int getInstructionSize() {
         return instruction.size();
+    }
+
+    public void setIssue(int index) {
+        issue.set(index, "x");
     }
 
     String getIssue(int index) {
         return issue.get(index);
     }
 
+    public void setExecute(int index) {
+        execute.set(index, "x");
+    }
+
     String getExecute(int index) {
         return execute.get(index);
+    }
+
+    public void setWriteResult(int index) {
+        writeResult.set(index, "x");
     }
 
     String getWriteResult(int index) {
@@ -361,19 +383,50 @@ class File  {
 
 /* Interface Gráfica */
 
-class Swing {
+class Swing implements ActionListener{
+
 
     static void tela(InstructionStatus instructionStatus, ReservationStations reservationStations, RegisterStatus registerStatus) {
 
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame("Simulador");
         JLabel label = new JLabel();
+        JButton button = new JButton("Next");
+        JPanel panel = new JPanel();
 
-        frame.setSize(1920, 1080);
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = kit.getScreenSize();
+        int screenWidth = (int)screenSize.getWidth();
+        int screenHeight = (int)screenSize.getHeight();
+        frame.setSize(screenWidth, screenHeight);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        label.setText(Tables.getTables(instructionStatus, reservationStations, registerStatus));
-        frame.getContentPane().add(label);
 
+        
+        label.setText(Tables.getTables(instructionStatus, reservationStations, registerStatus));
+
+        
+        
+        
+        panel.add(label);
+        panel.add(button);
+
+        button.addActionListener(new ActionListener() { 
+            public void actionPerformed(ActionEvent event) { 
+                // Essa parte não ta prointa
+                instructionStatus.setExecute(4);
+                label.setText(Tables.getTables(instructionStatus, reservationStations, registerStatus));
+            } 
+        });
+
+        frame.getContentPane().add(panel);
+
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // TODO Auto-generated method stub
+        
     }
 
 }
