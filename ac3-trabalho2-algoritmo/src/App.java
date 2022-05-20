@@ -1,4 +1,8 @@
 /* 
+    -git por que não lembro dos comandos: 
+        1 - git add .
+        2 - git commet -m ""
+        3 - git push -u origin main
     - linha a mais na primeira tabela por conta
     da variável "line" no Class.reader; 
     -
@@ -8,16 +12,14 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import java.awt.*;
+import java.awt.Toolkit;
+import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
 /* Tabelas  */
@@ -25,7 +27,7 @@ import javax.swing.WindowConstants;
 class InstructionStatus {
 
     String title = "Instruction Status";
-    String[] column = { "Instruction", "Issue", "Execute", "Write Result"};
+    String[] column = { "Instruction", "Issue", "Execute", "Write Result" };
     ArrayList<String> instruction = new ArrayList<String>();
     ArrayList<String> issue = new ArrayList<String>();
     ArrayList<String> execute = new ArrayList<String>();
@@ -43,125 +45,152 @@ class InstructionStatus {
     }
 
     String getTitle() {
-        return title;
+        return this.title;
     }
 
     String getColumn(int i) {
-        return column[i];
+        return this.column[i];
     }
 
-
     String getInstruction(int index) {
-        return instruction.get(index);
+        return this.instruction.get(index);
     }
 
     int getInstructionSize() {
-        return instruction.size();
+        return this.instruction.size();
     }
 
-    public void setIssue(int index) {
-        issue.set(index, "x");
+    void setIssue(int index) {
+        this.issue.set(index, "x");
     }
 
     String getIssue(int index) {
-        return issue.get(index);
+        return this.issue.get(index);
     }
 
-    public void setExecute(int index) {
-        execute.set(index, "x");
+    void setExecute(int index) {
+        this.execute.set(index, "x");
     }
 
     String getExecute(int index) {
-        return execute.get(index);
+        return this.execute.get(index);
     }
 
-    public void setWriteResult(int index) {
-        writeResult.set(index, "x");
+    void setWriteResult(int index) {
+        this.writeResult.set(index, "x");
     }
 
     String getWriteResult(int index) {
-        return writeResult.get(index);
+        return this.writeResult.get(index);
     }
 
 }
 
 class ReservationStations {
 
-String title = "Reservation Stations"; 
-String[] column = {"Name", "Busy", "Op", "Vj", "Vk", "Qj", "Qk", "A"};
-String name[] = new String[7];
-String busy[] = new String[7];
-String op[] = new String[7];
-String vj[] = new String[7];
-String vk[] = new String[7];
-String qj[] = new String[7];
-String qk[] = new String[7];
-String a[] = new String[7];
+    String title = "Reservation Stations";
+    String[] column = { "Name", "Busy", "Op", "Vj", "Vk", "Qj", "Qk", "A" };
+    String name[] = new String[7];
+    String busy[] = new String[7];
+    String op[] = new String[7];
+    String vj[] = new String[7];
+    String vk[] = new String[7];
+    String qj[] = new String[7];
+    String qk[] = new String[7];
+    String a[] = new String[7];
 
-String getTitle() {
-    return title;
-}
-
-String getColumn(int index) {
-    return column[index];
-}
-
-int getColumnSize(){
-    return column.length;
-}
-
-public String getName(int index) {
-    return name[index];
-}
-
-public String getBusy(int index) {
-    return busy[index];
-}
-
-public String getOp(int index) {
-    return op[index];
-}
-
-public String getVj(int index) {
-    return vj[index];
-}
-
-public String getVk(int index) {
-    return vk[index];
-}
-
-public String getQj(int index) {
-    return qj[index];
-}
-
-public String getQk(int index) {
-    return qk[index];
-}
-
-public String getA(int index) {
-    return a[index];
-}
-
-ReservationStations() {
-
-    name[0] = "Load1";
-    name[1] = "Load2";
-    name[2] = "Add1";
-    name[3] = "Add2";
-    name[4] = "Add3";
-    name[5] = "Mult1";
-    name[6] = "Mult2";
-    for (int i = 0; i < 7; i++) {
-        busy[i] = "No";
-        op[i] = " ";
-        vj[i] = " ";
-        vk[i] = " ";
-        qj[i] = " ";
-        qk[i] = " ";
-        a[i] = " ";
+    String getTitle() {
+        return title;
     }
 
-}
+    String getColumn(int index) {
+        return column[index];
+    }
+
+    int getColumnSize() {
+        return column.length;
+    }
+
+    String getName(int index) {
+        return name[index];
+    }
+
+    void setBusy(int index, String ent) {
+        busy[index] = ent;
+    }
+
+    String getBusy(int index) {
+        return busy[index];
+    }
+
+    void setOp(int index, String ent) {
+        op[index] = ent;
+    }
+
+    String getOp(int index) {
+        return op[index];
+    }
+
+    void setVj(int index, String ent) {
+        vj[index] = ent;
+    }
+
+    String getVj(int index) {
+        return vj[index];
+    }
+
+    void setVk(int index, String ent) {
+        vk[index] = ent;
+    }
+
+    String getVk(int index) {
+        return vk[index];
+    }
+
+    void setQj(int index, String ent) {
+        qj[index] = ent;
+    }
+
+    String getQj(int index) {
+        return qj[index];
+    }
+
+    void setQk(int index, String ent) {
+        qj[index] = ent;
+    }
+
+    String getQk(int index) {
+        return qk[index];
+    }
+
+    void setA(int index, String ent) {
+        a[index] = ent;
+    }
+
+    String getA(int index) {
+        return a[index];
+    }
+
+    ReservationStations() {
+
+        name[0] = "Load1";
+        name[1] = "Load2";
+        name[2] = "Add1";
+        name[3] = "Add2";
+        name[4] = "Add3";
+        name[5] = "Mult1";
+        name[6] = "Mult2";
+        for (int i = 0; i < 7; i++) {
+            busy[i] = "No";
+            op[i] = " ";
+            vj[i] = " ";
+            vk[i] = " ";
+            qj[i] = " ";
+            qk[i] = " ";
+            a[i] = " ";
+        }
+
+    }
 
 }
 
@@ -179,6 +208,10 @@ class RegisterStatus {
         return line1.get(index);
     }
 
+    void setLine2(int index, String ent) {
+        line2.set(index, ent);
+    }
+
     String getLine2(int index) {
         return line2.get(index);
     }
@@ -190,8 +223,8 @@ class RegisterStatus {
     RegisterStatus() {
         line1.add("Field");
         line2.add("Qi");
-        for(int i = 0; i < 30; i++){
-            line1.add("F"+i);
+        for (int i = 0; i < 30; i++) {
+            line1.add("F" + i);
             line2.add("");
         }
 
@@ -204,165 +237,151 @@ class RegisterStatus {
 class Tables {
 
     static String getColumn1(InstructionStatus instructionStatus) {
-        String text = 
-            "<tr>";
-            ;
-        for(int i = 0; i < 4; i++) {
-            text += 
-                "<th>" +
+        String text = "<tr>";
+        ;
+        for (int i = 0; i < 4; i++) {
+            text += "<th>" +
                     instructionStatus.getColumn(i) +
-                "</th>";   
+                    "</th>";
         }
-        text += 
-            "</tr>";
+        text += "</tr>";
         return text;
     }
 
     static String getRow1(InstructionStatus instructionStatus) {
         String text = "";
-        for(int i = 0; i < instructionStatus.getInstructionSize(); i++) {
-            text += 
-                "<tr>" + 
+        for (int i = 0; i < instructionStatus.getInstructionSize(); i++) {
+            text += "<tr>" +
                     "<td>" +
-                        instructionStatus.getInstruction(i) +
+                    instructionStatus.getInstruction(i) +
                     "</td>" +
                     "<td>" +
-                        instructionStatus.getIssue(i) +
+                    instructionStatus.getIssue(i) +
                     "</td>" +
                     "<td>" +
-                        instructionStatus.getExecute(i) +
+                    instructionStatus.getExecute(i) +
                     "</td>" +
                     "<td>" +
-                        instructionStatus.getWriteResult(i) +
+                    instructionStatus.getWriteResult(i) +
                     "</td>" +
-                "</tr>";
+                    "</tr>";
         }
         return text;
     }
 
     static String getColumn2(ReservationStations reservationStations) {
-        String text = 
-            "<tr>";
-            ;
-        for(int i = 0; i < reservationStations.getColumnSize(); i++) {
-            text += 
-                "<th>" +
+        String text = "<tr>";
+        ;
+        for (int i = 0; i < reservationStations.getColumnSize(); i++) {
+            text += "<th>" +
                     reservationStations.getColumn(i) +
-                "</th>";   
+                    "</th>";
         }
-        text += 
-            "</tr>";
+        text += "</tr>";
         return text;
     }
 
     static String getRow2(ReservationStations reservationStations) {
         String text = "";
-        for(int i = 0; i < 7; i++) {
-            text += 
-                "<tr>" + 
+        for (int i = 0; i < 7; i++) {
+            text += "<tr>" +
                     "<td>" +
-                        reservationStations.getName(i) +
+                    reservationStations.getName(i) +
                     "</td>" +
                     "<td>" +
-                        reservationStations.getBusy(i) +
+                    reservationStations.getBusy(i) +
                     "</td>" +
                     "<td>" +
-                        reservationStations.getOp(i) +
+                    reservationStations.getOp(i) +
                     "</td>" +
                     "<td>" +
-                        reservationStations.getVj(i) +
+                    reservationStations.getVj(i) +
                     "</td>" +
                     "<td>" +
-                        reservationStations.getVk(i) +
+                    reservationStations.getVk(i) +
                     "</td>" +
                     "<td>" +
-                        reservationStations.getQj(i) +
+                    reservationStations.getQj(i) +
                     "</td>" +
                     "<td>" +
-                        reservationStations.getQk(i) +
+                    reservationStations.getQk(i) +
                     "</td>" +
                     "<td>" +
-                        reservationStations.getA(i) +
+                    reservationStations.getA(i) +
                     "</td>" +
-                "</tr>";
+                    "</tr>";
         }
         return text;
     }
 
     static String getColumn3(RegisterStatus registerStatus) {
-        String text = 
-            "<tr>";
-        for(int i = 0; i < registerStatus.getLineSize(); i++) {
-            text += 
-                "<th>" +
+        String text = "<tr>";
+        for (int i = 0; i < registerStatus.getLineSize(); i++) {
+            text += "<th>" +
                     registerStatus.getLine1(i) +
-                "</th>";   
+                    "</th>";
         }
-        text += 
-            "</tr>";
+        text += "</tr>";
         return text;
     }
 
     static String getRow3(RegisterStatus registerStatus) {
-        String text = 
-            "<tr>";
-        for(int i = 0; i < registerStatus.getLineSize(); i++) {
-            text += 
-                "<td>" +
+        String text = "<tr>";
+        for (int i = 0; i < registerStatus.getLineSize(); i++) {
+            text += "<td>" +
                     registerStatus.getLine2(i) +
-                "</td>";
+                    "</td>";
         }
-        text += 
-            "</tr>";
+        text += "</tr>";
         return text;
     }
 
-    static String getTables(InstructionStatus instructionStatus, ReservationStations reservationStations, RegisterStatus registerStatus) {
+    static String getTables(InstructionStatus instructionStatus, ReservationStations reservationStations,
+            RegisterStatus registerStatus) {
         String column1 = getColumn1(instructionStatus);
         String row1 = getRow1(instructionStatus);
         String column2 = getColumn2(reservationStations);
         String row2 = getRow2(reservationStations);
         String column3 = getColumn3(registerStatus);
         String row3 = getRow3(registerStatus);
-        String text = 
-            "<html>" +
+        String text = "<html>" +
                 "<table border='1'>" +
-                    "<tr>" +
-                        "<th colsplan='4'>" +
-                            instructionStatus.getTitle() +
-                        "</th>" +
-                    "</tr>" +
-                    column1 +
-                    row1 +
+                "<tr>" +
+                "<th colsplan='4'>" +
+                instructionStatus.getTitle() +
+                "</th>" +
+                "</tr>" +
+                column1 +
+                row1 +
                 "</table>" +
-                "<br>" + 
+                "<br>" +
                 "<table border='1'>" +
-                    "<tr>" +
-                        "<th colsplan='4'>" +
-                            reservationStations.getTitle() +
-                        "</th>" +
-                    "</tr>" +
-                    column2 +
-                    row2 +
+                "<tr>" +
+                "<th colsplan='4'>" +
+                reservationStations.getTitle() +
+                "</th>" +
+                "</tr>" +
+                column2 +
+                row2 +
                 "</table>" +
-                "<br>" + 
+                "<br>" +
                 "<table border='1'>" +
-                    "<tr>" +
-                        "<th colsplan='4'>" +
-                            registerStatus.getTitle() +
-                        "</th>" +
-                    "</tr>" +
-                    column3 +
-                    row3 +
+                "<tr>" +
+                "<th colsplan='4'>" +
+                registerStatus.getTitle() +
+                "</th>" +
+                "</tr>" +
+                column3 +
+                row3 +
                 "</table>" +
-            "</html>";
+                "</html>";
         return text;
     }
 }
 
 /* Leitura de Arquivo */
 
-class File  {
+class File {
 
     static void reader(String path, ArrayList<String> input) throws IOException {
 
@@ -383,10 +402,10 @@ class File  {
 
 /* Interface Gráfica */
 
-class Swing implements ActionListener{
+class Swing {
 
-
-    static void tela(InstructionStatus instructionStatus, ReservationStations reservationStations, RegisterStatus registerStatus) {
+    static void tela(InstructionStatus instructionStatus, ReservationStations reservationStations,
+            RegisterStatus registerStatus) {
 
         JFrame frame = new JFrame("Simulador");
         JLabel label = new JLabel();
@@ -395,38 +414,27 @@ class Swing implements ActionListener{
 
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
-        int screenWidth = (int)screenSize.getWidth();
-        int screenHeight = (int)screenSize.getHeight();
+        int screenWidth = (int) screenSize.getWidth();
+        int screenHeight = (int) screenSize.getHeight();
         frame.setSize(screenWidth, screenHeight);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
-        
         label.setText(Tables.getTables(instructionStatus, reservationStations, registerStatus));
 
-        
-        
-        
         panel.add(label);
         panel.add(button);
 
-        button.addActionListener(new ActionListener() { 
-            public void actionPerformed(ActionEvent event) { 
+        button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
                 // Essa parte não ta prointa
                 instructionStatus.setExecute(4);
                 label.setText(Tables.getTables(instructionStatus, reservationStations, registerStatus));
-            } 
+            }
         });
 
         frame.getContentPane().add(panel);
 
-
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
-        
     }
 
 }
