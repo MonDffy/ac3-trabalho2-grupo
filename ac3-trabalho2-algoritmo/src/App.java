@@ -16,7 +16,7 @@ import javax.swing.WindowConstants;
 
 class InstructionStatus {
 
-    String title = "Instruction Status";
+    String title = "Instruction Status tefr";
     String[] column = { "Instruction", "Issue", "Execute", "Write Result"};
     ArrayList<String> instruction = new ArrayList<String>();
     ArrayList<String> issue = new ArrayList<String>();
