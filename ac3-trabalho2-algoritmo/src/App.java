@@ -1,11 +1,10 @@
 /* 
-    -git por que não lembro dos comandos: 
-        1 - git add .
-        2 - git commet -m ""
-        3 - git push -u origin main
-    - linha a mais na primeira tabela por conta
-    da variável "line" no Class.reader; 
-    -
+    -   git por que não lembro dos comandos: 
+            1 - git add .
+            2 - git commit -m ""
+            3 - git push -u origin main
+    -   Fazer a simulação;
+    -   Criar teste do arquivo de entrada;
 */
 
 import java.io.BufferedReader;
@@ -209,7 +208,7 @@ class RegisterStatus {
     }
 
     void setLine2(int index, String ent) {
-        line2.set(index, ent);
+        line2.set(index + 1, ent);
     }
 
     String getLine2(int index) {
@@ -388,14 +387,25 @@ class File {
         BufferedReader buffRead = new BufferedReader(new FileReader(path));
         String line = "";
         while (true) {
+            line = buffRead.readLine();
             if (line != null) {
                 input.add(line);
             } else {
                 break;
             }
-            line = buffRead.readLine();
         }
         buffRead.close();
+    }
+
+    static void testFile(ArrayList<String> input) {
+
+        Boolean valid = true;
+        if (valid = true) {
+
+        } else {
+
+        }
+
     }
 
 }
@@ -409,7 +419,8 @@ class Swing {
 
         JFrame frame = new JFrame("Simulador");
         JLabel label = new JLabel();
-        JButton button = new JButton("Next");
+        JButton nextButton = new JButton("Next");
+        // JButton previousButton = new JButton("Previous");
         JPanel panel = new JPanel();
 
         Toolkit kit = Toolkit.getDefaultToolkit();
@@ -423,17 +434,46 @@ class Swing {
         label.setText(Tables.getTables(instructionStatus, reservationStations, registerStatus));
 
         panel.add(label);
-        panel.add(button);
+        panel.add(nextButton);
+        // panel.add(previousButton);
 
-        button.addActionListener(new ActionListener() {
+        // previousButton.addActionListener(new ActionListener() {
+        // public void actionPerformed(ActionEvent event) {
+        // }
+        // });
+
+        nextButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                // Essa parte não ta prointa
-                instructionStatus.setExecute(4);
+                Simulation.next(instructionStatus, reservationStations, registerStatus);
                 label.setText(Tables.getTables(instructionStatus, reservationStations, registerStatus));
             }
         });
 
         frame.getContentPane().add(panel);
+
+    }
+
+}
+
+/* Simulação */
+
+class Simulation {
+
+    static int a = 0;
+
+    // static void previous(JLabel label, InstructionStatus instructionStatus,
+    // ReservationStations reservationStations,
+    // RegisterStatus registerStatus) {
+
+    // }
+
+    static void next(InstructionStatus instructionStatus, ReservationStations reservationStations,
+            RegisterStatus registerStatus) {
+
+        instructionStatus.setExecute(a);
+        reservationStations.setA(a, "teste1");
+        registerStatus.setLine2(a, "teste2");
+        a++;
 
     }
 
@@ -447,6 +487,8 @@ public class App {
         ArrayList<String> input = new ArrayList<String>();
         String path = "input.txt";
         File.reader(path, input);
+
+        File.testFile(input);
 
         InstructionStatus instructionStatus = new InstructionStatus();
         ReservationStations reservationStations = new ReservationStations();
