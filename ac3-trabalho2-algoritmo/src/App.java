@@ -19,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.WindowConstants;
 
 /* Tabelas  */
@@ -418,6 +419,7 @@ class Swing {
             RegisterStatus registerStatus) {
 
         JFrame frame = new JFrame("Simulador");
+        // frame.setLocationRelativeTo(null);
         JLabel label = new JLabel();
         JButton nextButton = new JButton("Next");
         // JButton previousButton = new JButton("Previous");
@@ -453,6 +455,64 @@ class Swing {
 
     }
 
+    static void error(int screenWidth, int screenHeight) {
+
+        JFrame frame = new JFrame("Error");
+        frame.setVisible(true);
+        JLabel label = new JLabel();
+        JPanel panel = new JPanel();
+        JButton button = new JButton("Finalizar");
+
+        frame.setLocationRelativeTo(null);
+        frame.setSize(screenWidth / 10, screenHeight / 8);
+        label.setText(
+                "<html>" +
+                        "<br>" +
+                        "A entrada de dados não é válida." +
+                        "<br> <br>" +
+                        "</html>");
+
+        panel.add(label);
+        panel.add(button);
+        frame.getContentPane().add(panel);
+
+        button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                System.exit(0);
+            }
+        });
+
+    }
+
+    static void fim(int screenWidth, int screenHeight) {
+
+        JFrame frame = new JFrame("Fim");
+        frame.setVisible(true);
+        JLabel label = new JLabel();
+        JPanel panel = new JPanel();
+        JButton button = new JButton("Finalizar");
+
+        frame.setLocationRelativeTo(null);
+        frame.setSize(screenWidth / 15, screenHeight / 8);
+        label.setText(
+                "<html>" +
+                        "<br>" +
+                        "Fim do programa." +
+                        "<br> <br>" +
+                        "</html>");
+
+        panel.add(label);
+        panel.add(button);
+        frame.getContentPane().add(panel);
+
+        button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                System.exit(0);
+            }
+        });
+
+    }
+
 }
 
 /* Simulação */
@@ -467,7 +527,7 @@ class Simulation {
 
     // }
 
-    static void next(InstructionStatus instructionStatus, ReservationStations reservationStations,
+    void next(InstructionStatus instructionStatus, ReservationStations reservationStations,
             RegisterStatus registerStatus) {
 
         instructionStatus.setExecute(a);
