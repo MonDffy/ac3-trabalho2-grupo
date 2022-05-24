@@ -1,0 +1,47 @@
+//Lista presente em http://home.ustc.edu.cn/~louwenqi/reference_books_tools/Computer%20Organization%20and%20Design%20ARM%20edition.pdf
+//Pagina 104 (pdf)
+// Instruções a serem utilizadas
+
+add              ADD X1, X2, X3
+subtract         SUB X1, X2, X3
+load register    LDUR X1, [X2,40]
+store register   STUR X1, [X2,40] 
+
+//Instruções que NÃO serão utilizadas (Inicialmente)
+
+add immediate                       ADDI X1, X2, 20
+subtract immediate                  SUBI X1, X2, 20
+add and set flags                   ADDS X1, X2, X3
+subtract and set flags              SUBS X1, X2, X3
+add immediate and set flags         ADDIS X1, X2, 20
+subtract immediate and set flags    SUBIS X1, X2, 20
+load signed word                    LDURSW X1,[X2,40] 
+store word                          STURW X1, [X2,40]
+load half                           LDURH X1, [X2,40] 
+store half                          STURH X1, [X2,40] 
+load byte                           LDURB X1, [X2,40]
+store byte                          STURB X1, [X2,40]
+load exclusive register             LDXR X1, [X2,0]
+store exclusive register            STXR X1, X3 [X2]
+move wide with zero                 MOVZ X1,20, LSL 0
+move wide with keep                 MOVK X1,20, LSL 0
+and                                 AND X1, X2, X3
+inclusive or                        ORR X1, X2, X3  
+exclusive or                        EOR X1, X2, X3
+and immediate                       ANDI X1, X2, 20
+inclusive or immediate              ORRI X1, X2, 20
+exclusive or immediate              EORI X1, X2, 20 
+logical shift left                  LSL X1, X2, 10 
+logical shift right                 LSR X1, X2, 10
+compare and branch on equal 0       CBZ X1, 25
+compare and branch on not equal 0   CBNZ X1, 25
+branch conditionally                B.cond 25
+branch                              B 2500
+branch to register                  BR X30
+branch with link                    BL 2500
+
+
+
+
+
+
