@@ -33,13 +33,13 @@ public class Simulation {
 
         // definir as instruções
         int x = -1;
-        int i = 3; // Define qual instrução será testada, ainda precisa fazer essa parte
+        int i = 4; // Define qual instrução será testada, ainda precisa fazer essa parte
         String busy;
         String str = instructions.get(i)[0];
         System.out.println(str);
         i++;
         switch (str) {
-            case "L.D":
+            case "LDUR", "STUR":
                 for (int j = 0; j < 2; j++) {
                     busy = reservationStations.getBusy(j);
                     if (busy == "No") {
@@ -48,7 +48,7 @@ public class Simulation {
                     }
                 }
                 break;
-            case "ADD.D", "SUB.D":
+            case "ADD", "SUB":
                 for (int j = 2; j < 5; j++) {
                     busy = reservationStations.getBusy(j);
                     if (busy == "No") {
@@ -57,7 +57,7 @@ public class Simulation {
                     }
                 }
                 break;
-            case "MUL.D", "DIV.D":
+            case "MUL", "SDIV":
                 for (int j = 5; j < 7; j++) {
                     busy = reservationStations.getBusy(j);
                     if (busy == "No") {

@@ -15,7 +15,7 @@ public class App {
 
         ArrayList<String[]> instructions = new ArrayList<>();
         for (int i = 0; i < input.size(); i++) {
-            String[] str = input.get(i).split("[ ,()]");
+            String[] str = input.get(i).split("[ .]");
             instructions.add(str);
         }
         return instructions;
@@ -41,11 +41,10 @@ public class App {
 
         // testar o split
         // for (int i = 0; i < instructions.size(); i++) {
-        // for (int j = 0; j < instructions.get(i).length; j++) {
-        // System.out.println("linha " + i + " coluna " + j + " " +
-        // instructions.get(i)[j] + " - ");
-
-        // }
+        //     for (int j = 0; j < instructions.get(i).length; j++) {
+        //         System.out.println("linha " + i + " coluna " + j + " " +
+        //                 instructions.get(i)[j] + " - ");
+        //     }
         // }
 
         // validar input
