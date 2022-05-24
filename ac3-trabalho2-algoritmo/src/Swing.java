@@ -13,7 +13,8 @@ import java.awt.event.ActionListener;
 
 public class Swing {
 
-    static void tela(ArrayList<String[]> instructions, InstructionStatus instructionStatus, ReservationStations reservationStations, RegisterStatus registerStatus) {
+    static void tela(ArrayList<String[]> instructions, InstructionStatus instructionStatus,
+            ReservationStations reservationStations, RegisterStatus registerStatus) {
 
         JFrame frame = new JFrame("Simulador");
         // frame.setLocationRelativeTo(null);
