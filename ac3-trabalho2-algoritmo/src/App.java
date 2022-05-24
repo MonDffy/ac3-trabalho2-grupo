@@ -19,7 +19,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 import javax.swing.WindowConstants;
 
 /* Tabelas  */
@@ -400,12 +399,12 @@ class File {
 
     static void testFile(ArrayList<String> input) {
 
-        Boolean valid = true;
-        if (valid = true) {
+        // Boolean valid = true;
+        // if (valid = true) {
 
-        } else {
+        // } else {
 
-        }
+        // }
 
     }
 
@@ -527,7 +526,7 @@ class Simulation {
 
     // }
 
-    void next(InstructionStatus instructionStatus, ReservationStations reservationStations,
+    static void next(InstructionStatus instructionStatus, ReservationStations reservationStations,
             RegisterStatus registerStatus) {
 
         instructionStatus.setExecute(a);
@@ -555,6 +554,7 @@ public class App {
         RegisterStatus registerStatus = new RegisterStatus();
 
         instructionStatus.setInstructions(input);
+        
         Swing.tela(instructionStatus, reservationStations, registerStatus);
 
     }
