@@ -15,8 +15,8 @@ public class App {
 
         ArrayList<String[]> instructions = new ArrayList<>();
         for (int i = 0; i < input.size(); i++) {
-            String[] aux = input.get(0).split("[ ,()]");
-            instructions.add(aux);
+            String[] str = input.get(0).split("[ ,()]");
+            instructions.add(str);
         }
         return instructions;
 
@@ -36,9 +36,10 @@ public class App {
 
         instructionStatus.setInstructions(input);
 
-        // Split no input
         ArrayList<String[]> instructions = new ArrayList<>();
         instructions = split(input);
+
+        //validar input
 
         Swing.tela(instructions, instructionStatus, reservationStations, registerStatus);
 
