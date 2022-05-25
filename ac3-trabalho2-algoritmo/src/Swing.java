@@ -13,8 +13,8 @@ import java.awt.event.ActionListener;
 
 public class Swing {
 
-    static void tela(ArrayList<String[]> instructions, InstructionStatus instructionStatus,
-            ReservationStations reservationStations, RegisterStatus registerStatus) {
+    static void tela(ArrayList<String[]> instructions, ReorderBuffer reorderBuffer,
+            ReservationStations reservationStations, FPRegisterStatus registerStatus) {
 
         JFrame frame = new JFrame("Simulador");
         // frame.setLocationRelativeTo(null);
@@ -31,7 +31,7 @@ public class Swing {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
-        label.setText(Tables.getTables(instructionStatus, reservationStations, registerStatus));
+        label.setText(Tables.getTables(reorderBuffer, reservationStations, registerStatus));
 
         panel.add(label);
         panel.add(nextButton);
@@ -44,8 +44,8 @@ public class Swing {
 
         nextButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                Simulation.next(instructions, instructionStatus, reservationStations, registerStatus);
-                label.setText(Tables.getTables(instructionStatus, reservationStations, registerStatus));
+                Simulation.next(instructions, reorderBuffer, reservationStations, registerStatus);
+                label.setText(Tables.getTables(reorderBuffer, reservationStations, registerStatus));
             }
         });
 

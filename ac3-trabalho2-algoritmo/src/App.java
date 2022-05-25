@@ -30,14 +30,16 @@ public class App {
 
         File.testFile(input);
 
-        InstructionStatus instructionStatus = new InstructionStatus();
+        ReorderBuffer reorderBuffer = new ReorderBuffer();
         ReservationStations reservationStations = new ReservationStations();
-        RegisterStatus registerStatus = new RegisterStatus();
+        FPRegisterStatus registerStatus = new FPRegisterStatus();
 
-        instructionStatus.setInstructions(input);
+        reorderBuffer.setInstructions(input);
 
         ArrayList<String[]> instructions = new ArrayList<>();
         instructions = split(input);
+
+        reorderBuffer.setDestination(instructions);
 
         // testar o split
         // for (int i = 0; i < instructions.size(); i++) {
@@ -49,7 +51,7 @@ public class App {
 
         // validar input
 
-        Swing.tela(instructions, instructionStatus, reservationStations, registerStatus);
+        Swing.tela(instructions, reorderBuffer, reservationStations, registerStatus);
 
     }
 }

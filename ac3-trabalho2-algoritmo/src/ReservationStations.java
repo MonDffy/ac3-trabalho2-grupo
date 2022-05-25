@@ -1,7 +1,7 @@
 public class ReservationStations {
 
     String title = "Reservation Stations";
-    String[] column = { "Name", "Busy", "Op", "Vj", "Vk", "Qj", "Qk", "A" };
+    String[] column = { "Name", "Busy", "Op", "Vj", "Vk", "Qj", "Qk", "Dest", "A" };
     String name[] = new String[7];
     String busy[] = new String[7];
     String op[] = new String[7];
@@ -9,6 +9,7 @@ public class ReservationStations {
     String vk[] = new String[7];
     String qj[] = new String[7];
     String qk[] = new String[7];
+    String dest[] = new String[7];
     String a[] = new String[7];
 
     String getTitle() {
@@ -75,6 +76,14 @@ public class ReservationStations {
         return qk[index];
     }
 
+    void setDest(int index, String ent) {
+        dest[index] = ent;
+    }
+
+    String getDest(int index) {
+        return dest[index];
+    }
+
     void setA(int index, String ent) {
         a[index] = ent;
     }
@@ -99,6 +108,7 @@ public class ReservationStations {
             vk[i] = " ";
             qj[i] = " ";
             qk[i] = " ";
+            dest[i] = " ";
             a[i] = " ";
         }
 

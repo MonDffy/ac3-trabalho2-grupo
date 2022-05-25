@@ -8,8 +8,8 @@ public class Simulation {
 
     // }
 
-    static void next(ArrayList<String[]> instructions, InstructionStatus instructionStatus,
-            ReservationStations reservationStations, RegisterStatus registerStatus) {
+    static void next(ArrayList<String[]> instructions, ReorderBuffer reorderBuffer,
+            ReservationStations reservationStations, FPRegisterStatus registerStatus) {
 
         // teste de conflito e renomeação (fazer por ultimo)
 
@@ -33,11 +33,9 @@ public class Simulation {
 
         // definir as instruções
         int x = -1;
-        int i = 4; // Define qual instrução será testada, ainda precisa fazer essa parte
+        int i = 5; // Define qual instrução será testada, ainda precisa fazer essa parte
         String busy;
         String str = instructions.get(i)[0];
-        System.out.println(str);
-        i++;
         switch (str) {
             case "LDUR", "STUR":
                 for (int j = 0; j < 2; j++) {
