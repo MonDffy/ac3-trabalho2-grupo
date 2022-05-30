@@ -1,32 +1,37 @@
 public class Tables {
 
-    static String getColumn1(InstructionStatus instructionStatus) {
+    static String getColumn1(ReorderBuffer reorderBuffer) {
         String text = "<tr>";
-        ;
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < reorderBuffer.getColumnSize(); i++) {
             text += "<th>" +
-                    instructionStatus.getColumn(i) +
+                    reorderBuffer.getColumn(i) +
                     "</th>";
         }
         text += "</tr>";
         return text;
     }
 
-    static String getRow1(InstructionStatus instructionStatus) {
+    static String getRow1(ReorderBuffer reorderBuffer) {
         String text = "";
-        for (int i = 0; i < instructionStatus.getInstructionSize(); i++) {
+        for (int i = 0; i < reorderBuffer.getColumnSize(); i++) {
             text += "<tr>" +
                     "<td>" +
-                    instructionStatus.getInstruction(i) +
+                    reorderBuffer.getEntry(i) +
                     "</td>" +
                     "<td>" +
-                    instructionStatus.getIssue(i) +
+                    reorderBuffer.getBusy(i) +
                     "</td>" +
                     "<td>" +
-                    instructionStatus.getExecute(i) +
+                    reorderBuffer.getInstruction(i) +
                     "</td>" +
                     "<td>" +
-                    instructionStatus.getWriteResult(i) +
+                    reorderBuffer.getState(i) +
+                    "</td>" +
+                    "<td>" +
+                    reorderBuffer.getDestination(i) +
+                    "</td>" +
+                    "<td>" +
+                    reorderBuffer.getValue(i) +
                     "</td>" +
                     "</tr>";
         }
@@ -71,6 +76,9 @@ public class Tables {
                     reservationStations.getQk(i) +
                     "</td>" +
                     "<td>" +
+                    reservationStations.getDest(i) +
+                    "</td>" +
+                    "<td>" +
                     reservationStations.getA(i) +
                     "</td>" +
                     "</tr>";
@@ -78,7 +86,7 @@ public class Tables {
         return text;
     }
 
-    static String getColumn3(RegisterStatus registerStatus) {
+    static String getColumn3(FPRegisterStatus registerStatus) {
         String text = "<tr>";
         for (int i = 0; i < registerStatus.getLineSize(); i++) {
             text += "<th>" +
@@ -89,21 +97,27 @@ public class Tables {
         return text;
     }
 
-    static String getRow3(RegisterStatus registerStatus) {
+    static String getRow3(FPRegisterStatus registerStatus) {
         String text = "<tr>";
         for (int i = 0; i < registerStatus.getLineSize(); i++) {
             text += "<td>" +
                     registerStatus.getLine2(i) +
                     "</td>";
         }
-        text += "</tr>";
-        return text;
+        text += "</tr>" +
+                "<tr>";
+        for (int i = 0; i < registerStatus.getLineSize(); i++) {
+            text += "<td>" +
+                    registerStatus.getLine3(i) +
+                    "</td>";
+        }
+        return text += "</tr>";
     }
 
-    static String getTables(InstructionStatus instructionStatus, ReservationStations reservationStations,
-            RegisterStatus registerStatus) {
-        String column1 = getColumn1(instructionStatus);
-        String row1 = getRow1(instructionStatus);
+    static String getTables(ReorderBuffer reorderBuffer, ReservationStations reservationStations,
+            FPRegisterStatus registerStatus) {
+        String column1 = getColumn1(reorderBuffer);
+        String row1 = getRow1(reorderBuffer);
         String column2 = getColumn2(reservationStations);
         String row2 = getRow2(reservationStations);
         String column3 = getColumn3(registerStatus);
@@ -112,7 +126,7 @@ public class Tables {
                 "<table border='1'>" +
                 "<tr>" +
                 "<th colsplan='4'>" +
-                instructionStatus.getTitle() +
+                reorderBuffer.getTitle() +
                 "</th>" +
                 "</tr>" +
                 column1 +

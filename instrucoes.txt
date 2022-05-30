@@ -2,10 +2,14 @@
 //Pagina 104 (pdf)
 // Instruções a serem utilizadas
 
-add              ADD X1, X2, X3
-subtract         SUB X1, X2, X3
-load register    LDUR X1, [X2,40]
-store register   STUR X1, [X2,40] 
+add                         ADD X1. X2. X3
+subtract                    SUB X1. X2. X3
+load register               LDUR X1. [X2. N]
+store register              STUR X1. [X2. N] 
+branch to register          BR X1
+multply                     MUL X1. X2. X3
+Signed divide               SDIV X1. X2. X3
+
 
 //Instruções que NÃO serão utilizadas (Inicialmente)
 

@@ -1,5 +1,4 @@
 /* 
-    victor esteve aqui
     -   git por que não lembro dos comandos: 
             1 - git add .
             2 - git commit -m ""
@@ -16,7 +15,7 @@ public class App {
 
         ArrayList<String[]> instructions = new ArrayList<>();
         for (int i = 0; i < input.size(); i++) {
-            String[] str = input.get(0).split("[ ,()]");
+            String[] str = input.get(i).split("[ .]");
             instructions.add(str);
         }
         return instructions;
@@ -31,18 +30,28 @@ public class App {
 
         File.testFile(input);
 
-        InstructionStatus instructionStatus = new InstructionStatus();
+        ReorderBuffer reorderBuffer = new ReorderBuffer();
         ReservationStations reservationStations = new ReservationStations();
-        RegisterStatus registerStatus = new RegisterStatus();
+        FPRegisterStatus registerStatus = new FPRegisterStatus();
 
-        instructionStatus.setInstructions(input);
+        reorderBuffer.setInstructions(input);
 
         ArrayList<String[]> instructions = new ArrayList<>();
         instructions = split(input);
 
-        //validar input
+        reorderBuffer.setDestination(instructions);
 
-        Swing.tela(instructions, instructionStatus, reservationStations, registerStatus);
+        // testar o split
+        // for (int i = 0; i < instructions.size(); i++) {
+        //     for (int j = 0; j < instructions.get(i).length; j++) {
+        //         System.out.println("linha " + i + " coluna " + j + " " +
+        //                 instructions.get(i)[j] + " - ");
+        //     }
+        // }
+
+        // validar input
+
+        Swing.tela(instructions, reorderBuffer, reservationStations, registerStatus);
 
     }
 }

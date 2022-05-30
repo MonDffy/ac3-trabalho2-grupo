@@ -8,77 +8,63 @@ public class Simulation {
 
     // }
 
-    static void next(ArrayList<String[]> instructions, InstructionStatus instructionStatus,
-            ReservationStations reservationStations,
-            RegisterStatus registerStatus) {
+    static void next(ArrayList<String[]> instructions, ReorderBuffer reorderBuffer,
+            ReservationStations reservationStations, FPRegisterStatus registerStatus) {
 
         // teste de conflito e renomeação (fazer por ultimo)
 
         // instructions já está splitada
 
-        int rt = testReservationStation(instructions, reservationStations);
-        // definar as possíveis instruções
-        if (rt == -1) {
-            System.out.println("colocar em espera");
+        int rs = testReservationStation(instructions, reservationStations);
+
+        if (rs == -1) {
+            System.out.println("colocar em espera"); // Apenas para teste
             // colocar em espera
         } else {
-            System.out.println("inserir na estação de reserva");
+            System.out.println("inserir na estação de reserva"); // Apenas para teste
             // inserir na estação de reserva
+            reservationStations.setBusy(rs, "Yes"); // Apenas para teste
         }
 
     }
 
-    static int testReservationStation(ArrayList<String[]> instructions, ReservationStations reservationStations) {
+    static int testReservationStation(ArrayList<String[]> instructions,
+            ReservationStations reservationStations) {
+
+        // definir as instruções
         int x = -1;
-        String busy = "no";
-        for (int i = 0; i < instructions.size(); i++) {
-            String str = instructions.get(0)[i];
-            switch (str) {
-                case "L.D":
-                    busy = reservationStations.getBusy(0);
-                    if (busy == "no") {
-                        x = 0;
+        int i = 5; // Define qual instrução será testada, ainda precisa fazer essa parte
+        String busy;
+        String str = instructions.get(i)[0];
+        switch (str) {
+            case "LDUR", "STUR":
+                for (int j = 0; j < 2; j++) {
+                    busy = reservationStations.getBusy(j);
+                    if (busy == "No") {
+                        x = j;
                         break;
                     }
-                    busy = reservationStations.getBusy(1);
-                    if (busy == "no") {
-                        x = 1;
+                }
+                break;
+            case "ADD", "SUB":
+                for (int j = 2; j < 5; j++) {
+                    busy = reservationStations.getBusy(j);
+                    if (busy == "No") {
+                        x = j;
                         break;
                     }
-                    break;
-                case "SUB.D":
-                case "ADD.D":
-                    busy = reservationStations.getBusy(2);
-                    if (busy == "no") {
-                        x = 2;
+                }
+                break;
+            case "MUL", "SDIV":
+                for (int j = 5; j < 7; j++) {
+                    busy = reservationStations.getBusy(j);
+                    if (busy == "No") {
+                        x = j;
                         break;
                     }
-                    busy = reservationStations.getBusy(3);
-                    if (busy == "no") {
-                        x = 3;
-                        break;
-                    }
-                    busy = reservationStations.getBusy(4);
-                    if (busy == "no") {
-                        x = 4;
-                        break;
-                    }
-                    break;
-                case "DIV.D":
-                case "MUL.D":
-                    busy = reservationStations.getBusy(5);
-                    if (busy == "no") {
-                        x = 5;
-                        break;
-                    }
-                    busy = reservationStations.getBusy(6);
-                    if (busy == "no") {
-                        x = 6;
-                        break;
-                    }
-                    break;
-            }
-            break;
+                }
+                break;
+            default:
         }
         return x;
     }
