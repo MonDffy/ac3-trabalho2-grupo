@@ -42,12 +42,12 @@ public class App {
         reorderBuffer.setDestination(instructions);
 
         // testar o split
-        // for (int i = 0; i < instructions.size(); i++) {
-        //     for (int j = 0; j < instructions.get(i).length; j++) {
-        //         System.out.println("linha " + i + " coluna " + j + " " +
-        //                 instructions.get(i)[j] + " - ");
-        //     }
-        // }
+        for (int i = 0; i < instructions.size(); i++) {
+            for (int j = 0; j < instructions.get(i).length; j++) {
+                System.out.println("linha " + i + " coluna " + j + " " +
+                        instructions.get(i)[j] + " - ");
+            }
+        }
 
         // validar input
 

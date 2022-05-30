@@ -12,19 +12,19 @@ public class ReorderBuffer {
     ArrayList<String> values = new ArrayList<String>();
 
     String getTitle() {
-        return this.title;
+        return title;
     }
 
     String getColumn(int i) {
-        return this.column[i];
+        return column[i];
     }
 
     int getColumnSize() {
-        return this.column.length;
+        return column.length;
     }
 
     String getEntry(int index) {
-        return this.entry.get(index);
+        return entry.get(index);
     }
 
     void setBusy(int index, String ent) {
@@ -50,7 +50,7 @@ public class ReorderBuffer {
     }
 
     String getInstruction(int index) {
-        return this.instruction.get(index);
+        return instruction.get(index);
     }
 
     void setState(int index, String ent) {
@@ -58,17 +58,18 @@ public class ReorderBuffer {
     }
 
     String getState(int index) {
-        return this.state.get(index);
+        return state.get(index);
     }
 
     void setDestination(ArrayList<String[]> instructions) {
         for (int i = 0; i < destination.size(); i++) {
             destination.set(i, instructions.get(i)[1]);
+            System.out.println("teste:" + instructions.get(i)[1]);
         }
     }
 
     String getDestination(int index) {
-        return this.destination.get(index);
+        return destination.get(index);
     }
 
     void setValue(int index, String ent) {
@@ -76,7 +77,7 @@ public class ReorderBuffer {
     }
 
     String getValue(int index) {
-        return this.values.get(index);
+        return values.get(index);
     }
 
 }
