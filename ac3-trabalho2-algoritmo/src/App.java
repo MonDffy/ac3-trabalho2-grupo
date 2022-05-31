@@ -3,6 +3,7 @@
             1 - git add .
             2 - git commit -m ""
             3 - git push -u origin main
+    -   Tabela de Instruções
     -   Fazer a simulação;
     -   Criar teste do arquivo de entrada;
 */
@@ -22,6 +23,25 @@ public class App {
 
     }
 
+    static void verificaDependencia(ArrayList<String[]> instructions) {
+
+        ArrayList<String> podeConterDependencia = new ArrayList<>();
+
+        for(int i = 0; i < instructions.size(); i++){
+            if(!instructions.get(i)[1].contains((CharSequence) podeConterDependencia)) {
+                podeConterDependencia.add(instructions.get(0)[0]);
+            }
+            for(int j = 0; j < podeConterDependencia.size(); j++) {
+                if(podeConterDependencia.get(j).equals(instructions.get(i)[2]) || podeConterDependencia.get(j).equals(instructions.get(i)[3])) {
+                    System.out.println("Dependencia verdadeira: " + podeConterDependencia.get(j));
+                }
+            }
+
+        }
+
+
+    }
+
     public static void main(String[] args) throws Exception {
 
         ArrayList<String> input = new ArrayList<>();
@@ -30,14 +50,17 @@ public class App {
 
         File.testFile(input);
 
+        ArrayList<String[]> instructions = new ArrayList<>();
+        instructions = split(input);
+
+        // validar input
+        verificaDependencia(instructions);
+
         ReorderBuffer reorderBuffer = new ReorderBuffer();
         ReservationStations reservationStations = new ReservationStations();
         FPRegisterStatus registerStatus = new FPRegisterStatus();
 
         reorderBuffer.setInstructions(input);
-
-        ArrayList<String[]> instructions = new ArrayList<>();
-        instructions = split(input);
 
         reorderBuffer.setDestination(instructions);
 
@@ -48,8 +71,6 @@ public class App {
                         instructions.get(i)[j] + " - ");
             }
         }
-
-        // validar input
 
         Swing.tela(instructions, reorderBuffer, reservationStations, registerStatus);
 
