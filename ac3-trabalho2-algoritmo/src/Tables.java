@@ -153,46 +153,67 @@ public class Tables {
         String row4 = getRow4(instructionStatus);
 
         String text = "<html>" +
+        "<style>" +
+            "#div1 {" +
+                "margin: 10px;" +
+                "display: none;" +
+                "background-color: red;" +
+            "}" +
+            "table {" +
+            "}" +
+            ".container {" +
+               "display: flex;" +
+                "flex-wrap: wrap;" +
+   
+            "}" +
+        "</style>" +
+        "<div class = 'container'>" +
+            "<div id='div1'>" +
                 "<table border='1'>" +
-                "<tr>" +
-                "<th colsplan='4'>" +
-                InstructionStatus.getTitle() +
-                "</th>" +
-                "</tr>" +
-                column4 +
-                row4 +
+                    "<tr>" +
+                        "<th colsplan='4'>" +
+                            "InstructionStatus.getTitle()" +
+                        "</th>" +
+                    "</tr>" +
+                    column4 +
+                    row4 +
                 "</table>" +
-                "<br>" +
+            "</div>" +
+            "<div id='div1'>" +
                 "<table border='1'>" +
-                "<tr>" +
-                "<th colsplan='4'>" +
-                reorderBuffer.getTitle() +
-                "</th>" +
-                "</tr>" +
-                column1 +
-                row1 +
+                    "<tr>" +
+                        "<th colsplan='4'>" +
+                            reorderBuffer.getTitle() +
+                        "</th>" +
+                    "</tr>" +
+                    column1 +
+                    row1 +
                 "</table>" +
-                "<br>" +
+            "</div>" +
+            "<div id='div1'>" +
                 "<table border='1'>" +
-                "<tr>" +
-                "<th colsplan='4'>" +
-                reservationStations.getTitle() +
-                "</th>" +
-                "</tr>" +
-                column2 +
-                row2 +
+                    "<tr>" +
+                        "<th colsplan='4'>" +
+                            reservationStations.getTitle() +
+                        "</th>" +
+                    "</tr>" +
+                    column2 +
+                    row2 +
                 "</table>" +
-                "<br>" +
+            "</div>" +
+            "<div id='div1'>" +
                 "<table border='1'>" +
-                "<tr>" +
-                "<th colsplan='4'>" +
-                registerStatus.getTitle() +
-                "</th>" +
-                "</tr>" +
-                column3 +
-                row3 +
+                    "<tr>" +
+                        "<th colsplan='4'>" +
+                            registerStatus.getTitle() +
+                        "</th>" +
+                    "</tr>" +
+                    column3 +
+                    row3 +
                 "</table>" +
-                "</html>";
+            "</div>" +
+        "</div>" +
+        "</html>";
         return text;
     }
 }
