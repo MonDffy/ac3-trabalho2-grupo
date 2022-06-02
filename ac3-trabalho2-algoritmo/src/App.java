@@ -11,16 +11,7 @@ import java.util.ArrayList;
 
 public class App {
 
-    static ArrayList<String[]> split(ArrayList<String> input) {
-
-        ArrayList<String[]> instructions = new ArrayList<>();
-        for (int i = 0; i < input.size(); i++) {
-            String[] str = input.get(i).split("[ .]");
-            instructions.add(str);
-        }
-        return instructions;
-
-    }
+    
 
     static void verificaDependencia(ArrayList<String[]> instructions) {
 
@@ -46,20 +37,20 @@ public class App {
         ArrayList<String> input = new ArrayList<>();
         String path = "input.txt";
         File.reader(path, input);
-        // File.testFile(input);
-
-        ArrayList<String[]> instructions = new ArrayList<>();
-        instructions = split(input);
-
-        // validar input
-        // verificaDependencia(instructions);
 
         InstructionStatus instructionStatus = new InstructionStatus();
         ReorderBuffer reorderBuffer = new ReorderBuffer();
         ReservationStations reservationStations = new ReservationStations();
         FPRegisterStatus registerStatus = new FPRegisterStatus();
 
+        ArrayList<String[]> instructions = new ArrayList<>();
+        instructions = File.split(input);
+        
         instructionStatus.setInstructions(input);
+
+        Swing.tela(instructions, instructionStatus, reorderBuffer, reservationStations, registerStatus);
+
+        
 
         // reorderBuffer.setInstructions(input);
 
@@ -73,7 +64,7 @@ public class App {
         // }
         // }
 
-        Swing.tela(instructions, instructionStatus, reorderBuffer, reservationStations, registerStatus);
+        
 
     }
 }

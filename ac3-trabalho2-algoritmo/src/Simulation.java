@@ -8,40 +8,50 @@ public class Simulation {
 
     // }
 
-    static void next(ArrayList<String[]> instructions, InstructionStatus instructionStatus, ReorderBuffer reorderBuffer,
+    static void next(InstructionStatus instructionStatus, ReorderBuffer reorderBuffer,
             ReservationStations reservationStations, FPRegisterStatus registerStatus) {
 
-        int notBusy = reorderBuffer.getNotBusy();
-        if (notBusy != -1) {
-            reorderBuffer.setInstructions(notBusy, instructionStatus.getNextInstruction());
-            reorderBuffer.setBusy(notBusy, "Yes");
-        }   
+        // Despacho
 
-        // teste de conflito e renomeação (fazer por ultimo)
+        String nextInstruction = instructionStatus.getNextInstruction();
+        String[] str = nextInstruction.split("[ .()]", 5);
+        int rb = reorderBuffer.getNotBusy();
+        int rs = testReservationStation(str[0], reservationStations);
+        if (rb != -1 && (rs != -1 || str[0].equals("BR"))) {
+            reorderBuffer.setInstructions(rb, nextInstruction);
+            reorderBuffer.setBusy(rb, "Yes");
+            if (!str[0].equals("BR")) {
+                reservationStations.setBusy(rs, "Yes");
+                reservationStations.setOp(rs, str[0]);
+                reservationStations.setDest(rs, reorderBuffer.getEntry(rb));
+                reservationStations.setVj(rs, str[2]);
+                reservationStations.setVk(rs, str[3]);
+            }
+            reorderBuffer.setState(rb, "Despacho");
+            instructionStatus.setStatus(rb, "Despacho");
+        } else {
+            System.out.println("Não dá");
+        }
 
-        // instructions já está splitada
+        // Execução
 
-        // int rs = testReservationStation(instructions, reservationStations);
+        // Verificar se os operandos estão disponíveis
+        // Executar a operação (podem levar vários ciclos e load exige duas etapas) 
 
-        // if (rs == -1) {
-        // System.out.println("colocar em espera"); // Apenas para teste
-        // // colocar em espera
-        // } else {
-        // System.out.println("inserir na estação de reserva"); // Apenas para teste
-        // // inserir na estação de reserva
-        // reservationStations.setBusy(rs, "Yes"); // Apenas para teste
-        // }
+        // Escrita
+
+        // Escreve resultado no CDB
+
+
 
     }
 
-    static int testReservationStation(ArrayList<String[]> instructions,
+    static int testReservationStation(String str,
             ReservationStations reservationStations) {
 
-        // definir as instruções
         int x = -1;
-        int i = 5; // Define qual instrução será testada, ainda precisa fazer essa parte
+
         String busy;
-        String str = instructions.get(i)[0];
         switch (str) {
             case "LDUR", "STUR":
                 for (int j = 0; j < 2; j++) {

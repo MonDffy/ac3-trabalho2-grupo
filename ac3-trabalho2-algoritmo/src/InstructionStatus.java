@@ -36,7 +36,6 @@ public class InstructionStatus {
 
     String getNextInstruction() {
         nextInst();
-        System.out.println(inst);
         return instruction.get(inst);
     }
 
@@ -50,8 +49,8 @@ public class InstructionStatus {
     }
     
 
-    void setStatus(int index) {
-        this.status.set(index, "x");
+    void setStatus(int index, String ent) {
+        this.status.set(index, ent);
     }
 
     String getStatus(int index) {

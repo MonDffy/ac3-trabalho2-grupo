@@ -131,9 +131,11 @@ public class Tables {
             text += "<tr>" +
                     "<td>" +
                     instructionStatus.getInstruction(i) +
+                    "</td>" +
+                    "<td>" +
                     instructionStatus.getStatus(i) +
                     "</td>" +
-                    "<td>";
+                    "</tr>";
         }
         return text;
     }

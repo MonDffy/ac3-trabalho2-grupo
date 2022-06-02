@@ -20,6 +20,17 @@ public class File {
         buffRead.close();
     }
 
+    static ArrayList<String[]> split(ArrayList<String> input) {
+
+        ArrayList<String[]> instructions = new ArrayList<>();
+        for (int i = 0; i < input.size(); i++) {
+            String[] str = input.get(i).split("[ .]");
+            instructions.add(str);
+        }
+        return instructions;
+
+    }
+
     static void testFile(ArrayList<String> input) {
 
   //      for(int i = 0;i<=input.size();i++){

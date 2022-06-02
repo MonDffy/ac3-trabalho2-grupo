@@ -44,7 +44,7 @@ public class Swing {
 
         nextButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                Simulation.next(instructions, instructionStatus, reorderBuffer, reservationStations, registerStatus);
+                Simulation.next(instructionStatus, reorderBuffer, reservationStations, registerStatus);
                 label.setText(Tables.getTables(instructionStatus, reorderBuffer, reservationStations, registerStatus));
             }
         });

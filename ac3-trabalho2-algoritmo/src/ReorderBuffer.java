@@ -66,7 +66,6 @@ public class ReorderBuffer {
     void setDestination(ArrayList<String[]> instructions) {
         for (int i = 0; i < destination.size(); i++) {
             destination.set(i, instructions.get(i)[1]);
-            System.out.println("teste:" + instructions.get(i)[1]);
         }
     }
 

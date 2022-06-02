@@ -36,6 +36,14 @@ public class ReservationStations {
         return busy[index];
     }
 
+    int getNotBusy() {
+        for(int i = 0; i < busy.length; i++){
+            if(busy[i] == "No")
+                return i;
+        }
+        return -1;
+    }
+
     void setOp(int index, String ent) {
         op[index] = ent;
     }
@@ -81,7 +89,7 @@ public class ReservationStations {
     }
 
     String getDest(int index) {
-        return dest[index];
+        return "#" + dest[index];
     }
 
     void setA(int index, String ent) {
