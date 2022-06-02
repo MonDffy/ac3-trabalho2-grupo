@@ -3,7 +3,6 @@
             1 - git add .
             2 - git commit -m ""
             3 - git push -u origin main
-    -   Tabela de Instruções
     -   Fazer a simulação;
     -   Criar teste do arquivo de entrada;
 */
@@ -27,18 +26,18 @@ public class App {
 
         ArrayList<String> podeConterDependencia = new ArrayList<>();
 
-        for(int i = 0; i < instructions.size(); i++){
-            if(!instructions.get(i)[1].contains((CharSequence) podeConterDependencia)) {
+        for (int i = 0; i < instructions.size(); i++) {
+            if (!instructions.get(i)[1].contains((CharSequence) podeConterDependencia)) {
                 podeConterDependencia.add(instructions.get(0)[0]);
             }
-            for(int j = 0; j < podeConterDependencia.size(); j++) {
-                if(podeConterDependencia.get(j).equals(instructions.get(i)[2]) || podeConterDependencia.get(j).equals(instructions.get(i)[3])) {
+            for (int j = 0; j < podeConterDependencia.size(); j++) {
+                if (podeConterDependencia.get(j).equals(instructions.get(i)[2])
+                        || podeConterDependencia.get(j).equals(instructions.get(i)[3])) {
                     System.out.println("Dependencia verdadeira: " + podeConterDependencia.get(j));
                 }
             }
 
         }
-
 
     }
 
@@ -47,32 +46,34 @@ public class App {
         ArrayList<String> input = new ArrayList<>();
         String path = "input.txt";
         File.reader(path, input);
-
-        File.testFile(input);
+        // File.testFile(input);
 
         ArrayList<String[]> instructions = new ArrayList<>();
         instructions = split(input);
 
         // validar input
-        verificaDependencia(instructions);
+        // verificaDependencia(instructions);
 
+        InstructionStatus instructionStatus = new InstructionStatus();
         ReorderBuffer reorderBuffer = new ReorderBuffer();
         ReservationStations reservationStations = new ReservationStations();
         FPRegisterStatus registerStatus = new FPRegisterStatus();
 
-        reorderBuffer.setInstructions(input);
+        instructionStatus.setInstructions(input);
 
-        reorderBuffer.setDestination(instructions);
+        // reorderBuffer.setInstructions(input);
+
+        // reorderBuffer.setDestination(instructions);
 
         // testar o split
-        for (int i = 0; i < instructions.size(); i++) {
-            for (int j = 0; j < instructions.get(i).length; j++) {
-                System.out.println("linha " + i + " coluna " + j + " " +
-                        instructions.get(i)[j] + " - ");
-            }
-        }
+        // for (int i = 0; i < instructions.size(); i++) {
+        // for (int j = 0; j < instructions.get(i).length; j++) {
+        // System.out.println("linha " + i + " coluna " + j + " " +
+        // instructions.get(i)[j] + " - ");
+        // }
+        // }
 
-        Swing.tela(instructions, reorderBuffer, reservationStations, registerStatus);
+        Swing.tela(instructions, instructionStatus, reorderBuffer, reservationStations, registerStatus);
 
     }
 }

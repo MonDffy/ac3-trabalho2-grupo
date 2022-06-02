@@ -13,7 +13,7 @@ public class Tables {
 
     static String getRow1(ReorderBuffer reorderBuffer) {
         String text = "";
-        for (int i = 0; i < reorderBuffer.getColumnSize(); i++) {
+        for (int i = 0; i < reorderBuffer.getEntrySize(); i++) {
             text += "<tr>" +
                     "<td>" +
                     reorderBuffer.getEntry(i) +
@@ -114,7 +114,32 @@ public class Tables {
         return text += "</tr>";
     }
 
-    static String getTables(ReorderBuffer reorderBuffer, ReservationStations reservationStations,
+    static String getColumn4(InstructionStatus instructionStatus) {
+        String text = "<tr>";
+        for (int i = 0; i < instructionStatus.getColumnSize(); i++) {
+            text += "<th>" +
+                    instructionStatus.getColumn(i) +
+                    "</th>";
+        }
+        text += "</tr>";
+        return text;
+    }
+
+    static String getRow4(InstructionStatus instructionStatus) {
+        String text = "";
+        for (int i = 0; i < instructionStatus.getStatusSize(); i++) {
+            text += "<tr>" +
+                    "<td>" +
+                    instructionStatus.getInstruction(i) +
+                    instructionStatus.getStatus(i) +
+                    "</td>" +
+                    "<td>";
+        }
+        return text;
+    }
+
+    static String getTables(InstructionStatus instructionStatus, ReorderBuffer reorderBuffer,
+            ReservationStations reservationStations,
             FPRegisterStatus registerStatus) {
         String column1 = getColumn1(reorderBuffer);
         String row1 = getRow1(reorderBuffer);
@@ -122,7 +147,20 @@ public class Tables {
         String row2 = getRow2(reservationStations);
         String column3 = getColumn3(registerStatus);
         String row3 = getRow3(registerStatus);
+        String column4 = getColumn4(instructionStatus);
+        String row4 = getRow4(instructionStatus);
+
         String text = "<html>" +
+                "<table border='1'>" +
+                "<tr>" +
+                "<th colsplan='4'>" +
+                InstructionStatus.getTitle() +
+                "</th>" +
+                "</tr>" +
+                column4 +
+                row4 +
+                "</table>" +
+                "<br>" +
                 "<table border='1'>" +
                 "<tr>" +
                 "<th colsplan='4'>" +

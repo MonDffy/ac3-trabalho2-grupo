@@ -27,6 +27,10 @@ public class ReorderBuffer {
         return entry.get(index);
     }
 
+    int getEntrySize() {
+        return entry.size();
+    }
+
     void setBusy(int index, String ent) {
         busy.set(index, ent);
     }
@@ -35,18 +39,16 @@ public class ReorderBuffer {
         return busy.get(index);
     }
 
-    void setInstructions(ArrayList<String> input) {
-        for (int i = 0; i < input.size(); i++) {
-            instruction.add(i, input.get(i));
+    int getNotBusy() {
+        for(int i = 0; i < busy.size(); i++){
+            if(busy.get(i) == "No")
+                return i;
         }
-        for (int i = 0; i < input.size(); i++) {
-            String str = "" + i;
-            entry.add(i, str);
-            busy.add(i, "No");
-            state.add(i, " ");
-            destination.add(i, " ");
-            values.add(i, " ");
-        }
+        return -1;
+    }
+
+    void setInstructions(int index, String input) {
+        instruction.set(index, input);
     }
 
     String getInstruction(int index) {
@@ -78,6 +80,20 @@ public class ReorderBuffer {
 
     String getValue(int index) {
         return values.get(index);
+    }
+
+    ReorderBuffer() {
+        for (int i = 0; i < 6; i++) {
+            instruction.add(i, "");
+        }
+        for (int i = 0; i < 6; i++) {
+            String str = i + 1 + "";
+            entry.add(i, str);
+            busy.add(i, "No");
+            state.add(i, " ");
+            destination.add(i, " ");
+            values.add(i, " ");
+        }
     }
 
 }

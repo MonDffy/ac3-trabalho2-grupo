@@ -8,23 +8,29 @@ public class Simulation {
 
     // }
 
-    static void next(ArrayList<String[]> instructions, ReorderBuffer reorderBuffer,
+    static void next(ArrayList<String[]> instructions, InstructionStatus instructionStatus, ReorderBuffer reorderBuffer,
             ReservationStations reservationStations, FPRegisterStatus registerStatus) {
+
+        int notBusy = reorderBuffer.getNotBusy();
+        if (notBusy != -1) {
+            reorderBuffer.setInstructions(notBusy, instructionStatus.getNextInstruction());
+            reorderBuffer.setBusy(notBusy, "Yes");
+        }   
 
         // teste de conflito e renomeação (fazer por ultimo)
 
         // instructions já está splitada
 
-        int rs = testReservationStation(instructions, reservationStations);
+        // int rs = testReservationStation(instructions, reservationStations);
 
-        if (rs == -1) {
-            System.out.println("colocar em espera"); // Apenas para teste
-            // colocar em espera
-        } else {
-            System.out.println("inserir na estação de reserva"); // Apenas para teste
-            // inserir na estação de reserva
-            reservationStations.setBusy(rs, "Yes"); // Apenas para teste
-        }
+        // if (rs == -1) {
+        // System.out.println("colocar em espera"); // Apenas para teste
+        // // colocar em espera
+        // } else {
+        // System.out.println("inserir na estação de reserva"); // Apenas para teste
+        // // inserir na estação de reserva
+        // reservationStations.setBusy(rs, "Yes"); // Apenas para teste
+        // }
 
     }
 
