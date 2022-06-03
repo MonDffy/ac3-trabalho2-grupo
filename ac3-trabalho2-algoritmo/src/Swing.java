@@ -53,8 +53,12 @@ public class Swing {
 
     }
 
-    static void error(int screenWidth, int screenHeight) {
+    static void error() {
 
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = kit.getScreenSize();
+        int screenWidth = (int) screenSize.getWidth();
+        int screenHeight = (int) screenSize.getHeight();
         JFrame frame = new JFrame("Error");
         frame.setVisible(true);
         JLabel label = new JLabel();
@@ -82,7 +86,12 @@ public class Swing {
 
     }
 
-    static void fim(int screenWidth, int screenHeight) {
+    static void fim() {
+
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = kit.getScreenSize();
+        int screenWidth = (int) screenSize.getWidth();
+        int screenHeight = (int) screenSize.getHeight();
 
         JFrame frame = new JFrame("Fim");
         frame.setVisible(true);

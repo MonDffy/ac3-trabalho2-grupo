@@ -40,7 +40,7 @@ public class FPRegisterStatus {
         line2.add("Reorder #");
         line3.add("Busy");
         for (int i = 0; i < 30; i++) {
-            line1.add("F" + i);
+            line1.add("X" + i);
             line2.add("");
             line3.add("No");
         }

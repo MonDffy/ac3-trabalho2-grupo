@@ -37,8 +37,8 @@ public class ReservationStations {
     }
 
     int getNotBusy() {
-        for(int i = 0; i < busy.length; i++){
-            if(busy[i] == "No")
+        for (int i = 0; i < busy.length; i++) {
+            if (busy[i] == "No")
                 return i;
         }
         return -1;
@@ -77,7 +77,7 @@ public class ReservationStations {
     }
 
     void setQk(int index, String ent) {
-        qj[index] = ent;
+        qk[index] = ent;
     }
 
     String getQk(int index) {

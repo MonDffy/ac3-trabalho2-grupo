@@ -11,8 +11,6 @@ import java.util.ArrayList;
 
 public class App {
 
-    
-
     static void verificaDependencia(ArrayList<String[]> instructions) {
 
         ArrayList<String> podeConterDependencia = new ArrayList<>();
@@ -45,12 +43,13 @@ public class App {
 
         ArrayList<String[]> instructions = new ArrayList<>();
         instructions = File.split(input);
-        
+
         instructionStatus.setInstructions(input);
-
-        Swing.tela(instructions, instructionStatus, reorderBuffer, reservationStations, registerStatus);
-
-        
+        try {
+            Swing.tela(instructions, instructionStatus, reorderBuffer, reservationStations, registerStatus);
+        } catch (Exception e) {
+            Swing.error();
+        }
 
         // reorderBuffer.setInstructions(input);
 
@@ -63,8 +62,6 @@ public class App {
         // instructions.get(i)[j] + " - ");
         // }
         // }
-
-        
 
     }
 }

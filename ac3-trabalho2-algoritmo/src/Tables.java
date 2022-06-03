@@ -153,67 +153,88 @@ public class Tables {
         String row4 = getRow4(instructionStatus);
 
         String text = "<html>" +
-        "<style>" +
-            "#div1 {" +
-                "margin: 10px;" +
-                "display: none;" +
-                "background-color: red;" +
-            "}" +
-            "table {" +
-            "}" +
-            ".container {" +
-               "display: flex;" +
-                "flex-wrap: wrap;" +
-   
-            "}" +
-        "</style>" +
-        "<div class = 'container'>" +
-            "<div id='div1'>" +
-                "<table border='1'>" +
-                    "<tr>" +
-                        "<th colsplan='4'>" +
-                            "InstructionStatus.getTitle()" +
-                        "</th>" +
-                    "</tr>" +
-                    column4 +
-                    row4 +
+        // "<head>" +
+        // "<title>Bootstrap Example</title>" +
+        // "<meta charset='utf-8>'" +
+        // "<meta name='viewport' content='width=device-width, initial-scale=1'>" +
+        // "<link rel='stylesheet'
+        // href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css'>"
+        // +
+        // "<script
+        // src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>"
+        // +
+        // "<script
+        // src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js'></script>"
+        // +
+        // "</head>" +
+
+        // "<style>" +
+        // "div {" +
+        // "width: 10%;" +
+        // "}" +
+        // "#d1 {" +
+        // "background-color: blue;" +
+        // "display: inline;" +
+        // "}" +
+        // "#d2 {" +
+        // "background-color: red;" +
+        // "display: inline;" +
+        // "}" +
+        // "#d3 {" +
+        // "background-color: green;" +
+        // "display: inline;" +
+        // "}" +
+        // "#d4 {" +
+        // "background-color: yellow;" +
+        // "display: inline;" +
+        // "}" +
+
+                "</style>" +
+                "<div id='d1' class = 'col-1'>" +
+                "<table border='1''>" +
+                "<tr>" +
+                "<th colsplan='4'>" +
+                "InstructionStatus.getTitle()" +
+                "</th>" +
+                "</tr>" +
+                column4 +
+                row4 +
                 "</table>" +
-            "</div>" +
-            "<div id='div1'>" +
-                "<table border='1'>" +
-                    "<tr>" +
-                        "<th colsplan='4'>" +
-                            reorderBuffer.getTitle() +
-                        "</th>" +
-                    "</tr>" +
-                    column1 +
-                    row1 +
+                "</div>" +
+                "<div id='d2' class = 'col-11'>" +
+                "<table border='1'style = 'float: right;'>" +
+                "<tr>" +
+                "<th colsplan='4'>" +
+                reorderBuffer.getTitle() +
+                "</th>" +
+                "</tr>" +
+                column1 +
+                row1 +
                 "</table>" +
-            "</div>" +
-            "<div id='div1'>" +
+                "</div>" +
+                "<div id='d3' class = 'col-6'>" +
                 "<table border='1'>" +
-                    "<tr>" +
-                        "<th colsplan='4'>" +
-                            reservationStations.getTitle() +
-                        "</th>" +
-                    "</tr>" +
-                    column2 +
-                    row2 +
+                "<tr>" +
+                "<th colsplan='4'>" +
+                reservationStations.getTitle() +
+                "</th>" +
+                "</tr>" +
+                column2 +
+                row2 +
                 "</table>" +
-            "</div>" +
-            "<div id='div1'>" +
+                "</div>" +
+                "<div id='d4' class = 'col-6'>" +
                 "<table border='1'>" +
-                    "<tr>" +
-                        "<th colsplan='4'>" +
-                            registerStatus.getTitle() +
-                        "</th>" +
-                    "</tr>" +
-                    column3 +
-                    row3 +
+                "<tr>" +
+                "<th colsplan='4'>" +
+                registerStatus.getTitle() +
+                "</th>" +
+                "</tr>" +
+                column3 +
+                row3 +
                 "</table>" +
-            "</div>" +
-        "</div>" +
-        "</html>";
+                "</div>" +
+                "</html>";
         return text;
     }
 }

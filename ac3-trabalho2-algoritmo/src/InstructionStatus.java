@@ -36,7 +36,12 @@ public class InstructionStatus {
 
     String getNextInstruction() {
         nextInst();
-        return instruction.get(inst);
+        if (inst == instruction.size()-1){
+            return "break";
+        }
+        else {
+            return instruction.get(inst);
+        }
     }
 
     void nextInst() {
