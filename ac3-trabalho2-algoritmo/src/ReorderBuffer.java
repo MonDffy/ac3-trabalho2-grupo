@@ -10,7 +10,6 @@ public class ReorderBuffer {
     ArrayList<String> state = new ArrayList<String>();
     ArrayList<String> destination = new ArrayList<String>();
     ArrayList<String> value = new ArrayList<String>();
-    ArrayList<String> value2 = new ArrayList<String>();
 
     String getTitle() {
         return title;
@@ -80,14 +79,6 @@ public class ReorderBuffer {
         return value.get(index);
     }
 
-    void setValue2(int index, String ent) {
-        value2.set(index, ent);
-    }
-
-    String getValue2(int index) {
-        return value2.get(index);
-    }
-
     ReorderBuffer() {
         for (int i = 0; i < 6; i++) {
             instruction.add(i, "");
@@ -96,10 +87,9 @@ public class ReorderBuffer {
             String str = i + 1 + "";
             entry.add(i, str);
             busy.add(i, "No");
-            state.add(i, "");
-            destination.add(i, "");
-            value.add(i, "");
-            value2.add(i, "");
+            state.add(i, " ");
+            destination.add(i, " ");
+            value.add(i, " ");
         }
     }
 

@@ -16,6 +16,7 @@ public class Simulation {
         nextInstruction = instructionStatus.getNextInstruction();
 
         despacho(nextInstruction, reorderBuffer, reservationStations, registerStatus, instructionStatus);
+
         // execucao(nextInstruction);
 
         // Escrita
@@ -28,20 +29,18 @@ public class Simulation {
             ReservationStations reservationStations,
             FPRegisterStatus registerStatus, InstructionStatus instructionStatus) {
 
+        int pos;
         String[] str = nextInstruction.split("[ .()]", 5);
         int rb = reorderBuffer.getNotBusy();
-
-        int pos;
         int rs = testReservationStation(str[0], reservationStations);
-        if ((rb != -1 && rs != -1) || (rb != -1 && str[0].equals("BR"))) {
-            reorderBuffer.setBusy(rb, "Yes");
+        if (rb != -1 && (rs != -1 || str[0].equals("BR"))) {
             reorderBuffer.setInstructions(rb, nextInstruction);
+            reorderBuffer.setBusy(rb, "Yes");
             if (str[0].equals("STR")) {
                 pos = 2;
             } else {
                 pos = 1;
             }
-            reorderBuffer.setDestination(rb, str[pos]);
             if (!str[0].equals("BR")) {
                 reservationStations.setBusy(rs, "Yes");
                 reservationStations.setOp(rs, str[0]);
@@ -52,6 +51,7 @@ public class Simulation {
                 registerStatus.setLine2(Integer.parseInt(aux2), reservationStations.getName(rs));
                 registerStatus.setLine3(Integer.parseInt(aux2), "Busy");
             }
+            reorderBuffer.setDestination(rb, str[pos]);
             reorderBuffer.setState(rb, "Despacho");
             instructionStatus.setStatus(rb, "Despacho");
         }
@@ -104,11 +104,11 @@ public class Simulation {
             int rb, int rs) {
 
         Boolean bool = true;
-
         for (int i = 0; i < reorderBuffer.getEntrySize(); i++) {
-            if (str[2].equals(reorderBuffer.getDestination(i))) {
+            if (i != rs && str[2].equals(reorderBuffer.getDestination(i))) {
                 reservationStations.setQj(rs, "#" + reorderBuffer.getEntry(i));
                 bool = false;
+                break;
             }
         }
         if (bool == true) {
@@ -123,6 +123,7 @@ public class Simulation {
             if (str[3].equals(reorderBuffer.getDestination(i))) {
                 reservationStations.setQk(rs, "#" + reorderBuffer.getEntry(i));
                 bool = false;
+                break;
             }
         }
         if (bool == true) {
