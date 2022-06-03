@@ -41,8 +41,8 @@ public class ReorderBuffer {
     }
 
     int getNotBusy() {
-        for(int i = 0; i < busy.size(); i++){
-            if(busy.get(i) == "No")
+        for (int i = 0; i < busy.size(); i++) {
+            if (busy.get(i) == "No")
                 return i;
         }
         return -1;
@@ -65,7 +65,7 @@ public class ReorderBuffer {
     }
 
     void setDestination(int index, String ent) {
-            destination.set(index, ent);
+        destination.set(index, ent);
     }
 
     String getDestination(int index) {
@@ -96,9 +96,9 @@ public class ReorderBuffer {
             String str = i + 1 + "";
             entry.add(i, str);
             busy.add(i, "No");
-            state.add(i, " ");
-            destination.add(i, " ");
-            value.add(i, " ");
+            state.add(i, "");
+            destination.add(i, "");
+            value.add(i, "");
             value2.add(i, "");
         }
     }

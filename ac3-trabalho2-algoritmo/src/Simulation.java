@@ -11,51 +11,53 @@ public class Simulation {
             ReservationStations reservationStations, FPRegisterStatus registerStatus) {
 
         // Despacho
+
         String nextInstruction = "";
-        int pos;
-        try {
-            nextInstruction = instructionStatus.getNextInstruction();
-        } catch (Exception e) {
-        } finally {
-            String[] str = nextInstruction.split("[ .()]", 5);
-            int rb = reorderBuffer.getNotBusy();
-            int rs = testReservationStation(str[0], reservationStations);
+        nextInstruction = instructionStatus.getNextInstruction();
 
-            if (rb != -1 && (rs != -1 || str[0].equals("BR"))) {
-                reorderBuffer.setInstructions(rb, nextInstruction);
-                reorderBuffer.setBusy(rb, "Yes");
-                if (str[0].equals("STR")) {
-                    pos = 2;
-                } else {
-                    pos = 1;
-                }
-                reorderBuffer.setDestination(rb, str[pos]);
-                if (!str[0].equals("BR")) {
-                    reservationStations.setBusy(rs, "Yes");
-                    reservationStations.setOp(rs, str[0]);
-                    reservationStations.setDest(rs, reorderBuffer.getEntry(rb));
-                    setJK(reservationStations, reorderBuffer, str, pos, rb, rs);
-                    String aux[] = str[pos].split("X");
-                    String aux2 = aux[1];
-                    registerStatus.setLine2(Integer.parseInt(aux2), reservationStations.getName(rs));
-                    registerStatus.setLine3(Integer.parseInt(aux2), "Busy");
-                }
-                reorderBuffer.setState(rb, "Despacho");
-                instructionStatus.setStatus(rb, "Despacho");
-            } else {
-                System.out.println("Não dá");
-            }
-
-        }
-
-        // Execução
-
-        // Verificar se os operandos estão disponíveis
-        // Executar a operação (podem levar vários ciclos e load exige duas etapas)
+        despacho(nextInstruction, reorderBuffer, reservationStations, registerStatus, instructionStatus);
+        // execucao(nextInstruction);
 
         // Escrita
 
         // Escreve resultado no CDB
+
+    }
+
+    static void despacho(String nextInstruction, ReorderBuffer reorderBuffer,
+            ReservationStations reservationStations,
+            FPRegisterStatus registerStatus, InstructionStatus instructionStatus) {
+
+        String[] str = nextInstruction.split("[ .()]", 5);
+        int rb = reorderBuffer.getNotBusy();
+
+        int pos;
+        int rs = testReservationStation(str[0], reservationStations);
+        if ((rb != -1 && rs != -1) || (rb != -1 && str[0].equals("BR"))) {
+            reorderBuffer.setBusy(rb, "Yes");
+            reorderBuffer.setInstructions(rb, nextInstruction);
+            if (str[0].equals("STR")) {
+                pos = 2;
+            } else {
+                pos = 1;
+            }
+            reorderBuffer.setDestination(rb, str[pos]);
+            if (!str[0].equals("BR")) {
+                reservationStations.setBusy(rs, "Yes");
+                reservationStations.setOp(rs, str[0]);
+                reservationStations.setDest(rs, reorderBuffer.getEntry(rb));
+                setJK(reservationStations, reorderBuffer, str, pos, rb, rs);
+                String aux[] = str[pos].split("X");
+                String aux2 = aux[1];
+                registerStatus.setLine2(Integer.parseInt(aux2), reservationStations.getName(rs));
+                registerStatus.setLine3(Integer.parseInt(aux2), "Busy");
+            }
+            reorderBuffer.setState(rb, "Despacho");
+            instructionStatus.setStatus(rb, "Despacho");
+        }
+    }
+
+    static void execucao(String nextInstruction) {
 
     }
 
@@ -151,7 +153,7 @@ public class Simulation {
                 break;
             default:
         }
-        reorderBuffer.setValue2(rb, x);
+        reorderBuffer.setValue(rb, x);
     }
 
 }

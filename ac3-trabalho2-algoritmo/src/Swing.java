@@ -41,7 +41,6 @@ public class Swing {
         // public void actionPerformed(ActionEvent event) {
         // }
         // });
-
         nextButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 Simulation.next(instructionStatus, reorderBuffer, reservationStations, registerStatus);
