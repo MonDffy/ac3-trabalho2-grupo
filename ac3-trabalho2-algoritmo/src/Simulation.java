@@ -1,7 +1,9 @@
+import java.security.interfaces.RSAKey;
 
 public class Simulation {
 
-    static int nextCount = 0;
+    static int nextCount = -1;
+    static int is = -1;
 
     // static void previous(JLabel label, InstructionStatus instructionStatus,
     // ReservationStations reservationStations,
@@ -18,13 +20,17 @@ public class Simulation {
         // System.out.println(nextCount);
 
         String nextInstruction = "";
-        nextInstruction = instructionStatus.getNextInstruction();
+        if (is < 6) {
+            for (int i = 0; i < 6; i++) {
+                if (reorderBuffer.getNotBusy() != -1) {
+                    nextInstruction = instructionStatus.getNextInstruction();
+                    is++;
+                    despacho(nextInstruction, reorderBuffer, reservationStations, registerStatus, instructionStatus);
+                }
 
-        despacho(nextInstruction, reorderBuffer, reservationStations, registerStatus, instructionStatus);
-
-        if (nextCount > 6) {
-            execucao(reorderBuffer, reservationStations);
+            }
         }
+        execucao(reorderBuffer, reservationStations, registerStatus, instructionStatus);
 
         // execucao(nextInstruction);
 
@@ -54,6 +60,7 @@ public class Simulation {
                 reservationStations.setBusy(rs, "Yes");
                 reservationStations.setOp(rs, str[0]);
                 reservationStations.setDest(rs, reorderBuffer.getEntry(rb));
+                reorderBuffer.setReorderList(reorderBuffer.getEntry(rb));
                 setJK(reservationStations, reorderBuffer, str, pos, rb, rs);
                 String aux[] = str[pos].split("X");
                 String aux2 = aux[1];
@@ -62,23 +69,26 @@ public class Simulation {
             }
             reorderBuffer.setDestination(rb, str[pos]);
             reorderBuffer.setState(rb, "Despacho");
-            instructionStatus.setStatus(rb, "Despacho");
         }
     }
 
-    static void execucao(ReorderBuffer reorderBuffer, ReservationStations reservationStations) {
+    static void execucao(ReorderBuffer reorderBuffer, ReservationStations reservationStations,
+            FPRegisterStatus registerStatus, InstructionStatus instructionStatus) {
 
         int count;
         int rb;
-        for (int i = 0; i < reservationStations.name.length; i++) {
-            if (reservationStations.getVj(i) != "") {
-                if (reservationStations.getVk(i) != "") {
-                    count = reservationStations.getCount(i);
+        for (int rs = 0; rs < reservationStations.name.length; rs++) {
+            if (reservationStations.getVj(rs) != "") {
+                if (reservationStations.getVk(rs) != "") {
+                    count = reservationStations.getCount(rs);
                     if (count == 0) {
-                        rb = Integer.parseInt(reservationStations.getDest(i));
+                        rb = Integer.parseInt(reservationStations.getDest(rs)) - 1;
                         setValue(reorderBuffer.getInstruction(rb), rb, reorderBuffer);
+                        reorderBuffer.setState(rb, "Execução");
+                        reorderBuffer.setBusy(rb, "No");
+                        reservationStations.setBusy(rs, "No");
                     } else {
-                        reservationStations.setCount(i, --count);
+                        reservationStations.setCount(rs, --count);
                     }
                 }
             }

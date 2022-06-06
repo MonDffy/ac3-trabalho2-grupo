@@ -10,6 +10,7 @@ public class ReorderBuffer {
     ArrayList<String> state = new ArrayList<String>();
     ArrayList<String> destination = new ArrayList<String>();
     ArrayList<String> value = new ArrayList<String>();
+    ArrayList<String> reorderList = new ArrayList<String>();
 
     String getTitle() {
         return title;
@@ -76,6 +77,14 @@ public class ReorderBuffer {
     }
 
     String getValue(int index) {
+        return value.get(index);
+    }
+
+    void setReorderList(String ent) {
+        value.add(ent);
+    }
+
+    String getReorderList(int index) {
         return value.get(index);
     }
 

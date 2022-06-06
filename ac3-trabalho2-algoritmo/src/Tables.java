@@ -160,38 +160,38 @@ public class Tables {
         // "<link rel='stylesheet'
         // href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css'>"
         // +
-        // "<script
+        // "<script>" +
         // src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>"
         // +
-        // "<script
+        // "<script>" +
         // src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js'></script>"
         // +
         // "</head>" +
 
-        // "<style>" +
-        // "div {" +
-        // "width: 10%;" +
-        // "}" +
-        // "#d1 {" +
-        // "background-color: blue;" +
-        // "display: inline;" +
-        // "}" +
-        // "#d2 {" +
-        // "background-color: red;" +
-        // "display: inline;" +
-        // "}" +
-        // "#d3 {" +
-        // "background-color: green;" +
-        // "display: inline;" +
-        // "}" +
-        // "#d4 {" +
-        // "background-color: yellow;" +
-        // "display: inline;" +
-        // "}" +
+                "<style>" +
+                "div {" +
+                "font-size:70%" +
+                "}" +
+                // "#d1 {" +
+                // "background-color: blue;" +
+                // "display: inline;" +
+                // "}" +
+                // "#d2 {" +
+                // "background-color: red;" +
+                // "display: inline;" +
+                // "}" +
+                // "#d3 {" +
+                // "background-color: green;" +
+                // "display: inline;" +
+                // "}" +
+                // "#d4 {" +
+                // "background-color: yellow;" +
+                // "display: inline;" +
+                // "}" +
 
                 "</style>" +
                 "<div id='d1' class = 'col-1'>" +
-                "<table border='1''>" +
+                "<table border='1' style = 'font-size:70%'>" +
                 "<tr>" +
                 "<th colsplan='4'>" +
                 "InstructionStatus.getTitle()" +
@@ -201,8 +201,8 @@ public class Tables {
                 row4 +
                 "</table>" +
                 "</div>" +
-                "<div id='d2' class = 'col-11'>" +
-                "<table border='1'style = 'float: right;'>" +
+                "<div id='d2' class = 'col-11'  face='Times'>" +
+                "<table border='1'>" +
                 "<tr>" +
                 "<th colsplan='4'>" +
                 reorderBuffer.getTitle() +
