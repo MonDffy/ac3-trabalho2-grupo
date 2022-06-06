@@ -11,6 +11,7 @@ public class ReservationStations {
     String qk[] = new String[7];
     String dest[] = new String[7];
     String a[] = new String[7];
+    int[] count = new int[7];
 
     String getTitle() {
         return title;
@@ -89,7 +90,7 @@ public class ReservationStations {
     }
 
     String getDest(int index) {
-        return "#" + dest[index];
+        return dest[index];
     }
 
     void setA(int index, String ent) {
@@ -98,6 +99,14 @@ public class ReservationStations {
 
     String getA(int index) {
         return a[index];
+    }
+
+    void setCount(int index, int ent) {
+        count[index] = ent;
+    }
+
+    int getCount(int index) {
+        return count[index];
     }
 
     ReservationStations() {
@@ -111,13 +120,13 @@ public class ReservationStations {
         name[6] = "Mult2";
         for (int i = 0; i < 7; i++) {
             busy[i] = "No";
-            op[i] = " ";
-            vj[i] = " ";
-            vk[i] = " ";
-            qj[i] = " ";
-            qk[i] = " ";
-            dest[i] = " ";
-            a[i] = " ";
+            op[i] = "";
+            vj[i] = "";
+            vk[i] = "";
+            qj[i] = "";
+            qk[i] = "";
+            dest[i] = "";
+            a[i] = "";
         }
 
     }

@@ -5,6 +5,7 @@
             3 - git push -u origin main
     -   Fazer a simulação;
     -   Criar teste do arquivo de entrada;
+    - Quantos ciclos gastam cada instrução? 
 */
 
 import java.util.ArrayList;
@@ -45,11 +46,11 @@ public class App {
         instructions = File.split(input);
 
         instructionStatus.setInstructions(input);
-        try {
-            Swing.tela(instructions, instructionStatus, reorderBuffer, reservationStations, registerStatus);
-        } catch (Exception e) {
-            Swing.error();
-        }
+        // try {
+        Swing.tela(instructions, instructionStatus, reorderBuffer, reservationStations, registerStatus);
+        // } catch (Exception e) {
+        // Swing.error();
+        // }
 
         // reorderBuffer.setInstructions(input);
 
