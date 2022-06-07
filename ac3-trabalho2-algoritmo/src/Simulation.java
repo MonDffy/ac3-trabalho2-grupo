@@ -77,16 +77,19 @@ public class Simulation {
 
         int count;
         int rb;
+        String instruction;
         for (int rs = 0; rs < reservationStations.name.length; rs++) {
+            System.out.println(rs);
             if (reservationStations.getVj(rs) != "") {
                 if (reservationStations.getVk(rs) != "") {
                     count = reservationStations.getCount(rs);
                     if (count == 0) {
-                        rb = Integer.parseInt(reservationStations.getDest(rs)) - 1;
-                        setValue(reorderBuffer.getInstruction(rb), rb, reorderBuffer);
-                        reorderBuffer.setState(rb, "Execução");
-                        reorderBuffer.setBusy(rb, "No");
                         reservationStations.setBusy(rs, "No");
+                        rb = Integer.parseInt(reservationStations.getDest(rs)) - 1;
+                        instruction = reorderBuffer.getInstruction(rb);
+                        setValue(instruction, rb, reorderBuffer);
+                        reorderBuffer.setState(rb, "Execução");
+
                     } else {
                         reservationStations.setCount(rs, --count);
                     }
@@ -145,6 +148,7 @@ public class Simulation {
         for (int i = 0; i < reorderBuffer.getEntrySize(); i++) {
             if (i != rs && str[2].equals(reorderBuffer.getDestination(i))) {
                 reservationStations.setQj(rs, "#" + reorderBuffer.getEntry(i));
+                reservationStations.setVj(rs, "");
                 bool = false;
                 break;
             }
@@ -152,20 +156,24 @@ public class Simulation {
         if (bool == true) {
             if (str[0].equals("STR")) {
                 reservationStations.setVj(rs, str[1]);
+                reservationStations.setQj(rs, "");
             } else {
                 reservationStations.setVj(rs, str[2]);
+                reservationStations.setQj(rs, "");
             }
         }
         bool = true;
         for (int i = 0; i < 6; i++) {
             if (str[3].equals(reorderBuffer.getDestination(i))) {
                 reservationStations.setQk(rs, "#" + reorderBuffer.getEntry(i));
+                reservationStations.setQj(rs, "");
                 bool = false;
                 break;
             }
         }
         if (bool == true) {
             reservationStations.setVk(rs, str[3]);
+            reservationStations.setQj(rs, "");
         }
     }
 

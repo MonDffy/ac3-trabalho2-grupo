@@ -170,7 +170,7 @@ public class Tables {
 
                 "<style>" +
                 "div {" +
-                "font-size:70%" +
+                "font-size:100%" +
                 "}" +
                 // "#d1 {" +
                 // "background-color: blue;" +
@@ -190,17 +190,17 @@ public class Tables {
                 // "}" +
 
                 "</style>" +
-                "<div id='d1' class = 'col-1'>" +
-                "<table border='1' style = 'font-size:70%'>" +
-                "<tr>" +
-                "<th colsplan='4'>" +
-                "InstructionStatus.getTitle()" +
-                "</th>" +
-                "</tr>" +
-                column4 +
-                row4 +
-                "</table>" +
-                "</div>" +
+                // "<div id='d1' class = 'col-1'>" +
+                // "<table border='1' style = 'font-size:70%'>" +
+                // "<tr>" +
+                // "<th colsplan='4'>" +
+                // "InstructionStatus.getTitle()" +
+                // "</th>" +
+                // "</tr>" +
+                // column4 +
+                // row4 +
+                // "</table>" +
+                // "</div>" +
                 "<div id='d2' class = 'col-11'  face='Times'>" +
                 "<table border='1'>" +
                 "<tr>" +
