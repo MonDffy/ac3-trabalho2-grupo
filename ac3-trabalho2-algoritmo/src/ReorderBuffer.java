@@ -57,7 +57,7 @@ public class ReorderBuffer {
     }
 
     void setState(int index, String ent) {
-        state.set(index, ent);
+        this.state.set(index, ent);
     }
 
     String getState(int index) {
@@ -94,6 +94,15 @@ public class ReorderBuffer {
 
     String getReorderList(int index) {
         return reorderList.get(index);
+    }
+
+    void deleteRow() {
+        instruction.remove(0);
+        entry.remove(0);
+        busy.remove(0);
+        state.remove(0);
+        destination.remove(0);
+        value.remove(0);
     }
 
     ReorderBuffer() {

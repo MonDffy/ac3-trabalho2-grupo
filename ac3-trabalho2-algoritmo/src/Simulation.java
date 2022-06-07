@@ -19,17 +19,22 @@ public class Simulation {
 
         String nextInstruction = "";
 
-        writeResult(reorderBuffer, reservationStations, registerStatus,
+        // posCommit(reorderBuffer, reservationStations, registerStatus,
+        // instructionStatus);
+
+        commit(reorderBuffer, reservationStations, registerStatus,
                 instructionStatus);
 
-        execucao(reorderBuffer, reservationStations, registerStatus, instructionStatus);
+        writeResult(reorderBuffer, reservationStations, registerStatus, instructionStatus);
 
+        execucao(reorderBuffer, reservationStations, registerStatus, instructionStatus);
         if (is < 6) {
-            for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
                 if (reorderBuffer.getNotBusy() != -1) {
                     nextInstruction = instructionStatus.getNextInstruction();
                     is++;
-                    despacho(nextInstruction, reorderBuffer, reservationStations, registerStatus, instructionStatus);
+                    despacho(nextInstruction, reorderBuffer, reservationStations, registerStatus,
+                            instructionStatus);
                 }
 
             }
@@ -40,12 +45,6 @@ public class Simulation {
                 despacho(nextInstruction, reorderBuffer, reservationStations, registerStatus, instructionStatus);
             }
         }
-
-        // for (int i = 0; i < reorderBuffer.reorderList.size(); i++) {
-        // System.out.println("Teste " + reorderBuffer.getReorderList(i));
-        // }
-        // System.out.println();
-
     }
 
     static void despacho(String nextInstruction, ReorderBuffer reorderBuffer,
@@ -69,7 +68,7 @@ public class Simulation {
                 reservationStations.setBusy(rs, "Yes");
                 reservationStations.setOp(rs, str[0]);
                 reservationStations.setDest(rs, reorderBuffer.getEntry(rb));
-                setJK(reservationStations, reorderBuffer, str, pos, rb, rs);
+                setJK(reservationStations, reorderBuffer, str, pos, rs);
                 String aux[] = str[pos].split("X");
                 String aux2 = aux[1];
                 registerStatus.setLine2(Integer.parseInt(aux2), reservationStations.getName(rs));
@@ -88,19 +87,20 @@ public class Simulation {
         String instruction;
         String[] str;
         for (int rs = 0; rs < reservationStations.name.length; rs++) {
-            if (true && reservationStations.getVj(rs) != "") {
+            if (reservationStations.getVj(rs) != "") {
                 rb = Integer.parseInt(reservationStations.getDest(rs)) - 1;
                 instruction = reorderBuffer.getInstruction(rb);
                 str = instruction.split("[ .() ]", 5);
-                if (reservationStations.getVk(rs) != "" || str[0].equals("LDR") || str[0].equals("STR")) {
+                if ((reservationStations.getVk(rs) != "" || str[0].equals("LDR") || str[0].equals("STR"))) {
                     count = reservationStations.getCount(rs);
-                    reorderBuffer.setState(rb, "Execução");
                     if (count == 0) {
                         reservationStations.setBusy(rs, "No");
                         setValue(instruction, rb, reorderBuffer);
-                        reorderBuffer.setState(rb, "Execução");
                     } else {
                         reservationStations.setCount(rs, --count);
+                    }
+                    if (reorderBuffer.getState(rb).equals("Despacho")) {
+                        reorderBuffer.setState(rb, "Execução");
                     }
                 }
             }
@@ -117,7 +117,6 @@ public class Simulation {
         String[] str;
         int pos;
         for (int rs = 0; rs < reservationStations.name.length; rs++) {
-
             if (reservationStations.getQj(rs) != "") {
                 aux = reservationStations.getQj(rs).replace("#", "");
                 rb = Integer.parseInt(aux) - 1;
@@ -130,16 +129,15 @@ public class Simulation {
                 }
                 if (!reorderBuffer.getValue(rb).equals("")) {
                     reorderBuffer.removeFromList(reorderBuffer.getDestination(rb));
-                    setJK(reservationStations, reorderBuffer, str, pos, rb, rs);
-                    reorderBuffer.setState(rb, "Write Result");
-
+                    setJK(reservationStations, reorderBuffer, str, pos, rs);
+                    if (reorderBuffer.getState(rb).equals("Execução")) {
+                        reorderBuffer.setState(rb, "Write Result");
+                    }
                 }
             }
             if (reservationStations.getQk(rs) != "") {
                 aux = reservationStations.getQk(rs).replace("#", "");
                 rb = Integer.parseInt(aux) - 1;
-                System.out.println(reorderBuffer.getDestination(rb));
-
                 instrucao = reorderBuffer.getInstruction(rb);
                 str = instrucao.split("[ .() ]", 5);
                 if (str[0].equals("STR")) {
@@ -149,11 +147,43 @@ public class Simulation {
                 }
                 if (!reorderBuffer.getValue(rb).equals("")) {
                     reorderBuffer.removeFromList(reorderBuffer.getDestination(rb));
-                    setJK(reservationStations, reorderBuffer, str, pos, rb, rs);
-                    reorderBuffer.setState(rb, "Write Result");
+                    setJK(reservationStations, reorderBuffer, str, pos, rs);
+                    if (reorderBuffer.getState(rb).equals("Execução")) {
+                        reorderBuffer.setState(rb, "Write Result");
+                    }
+                }
+            }
+            if (reservationStations.getQj(rs) == "" && reservationStations.getQk(rs) == "") {
+                aux = reservationStations.getDest(rs).replace("#", "");
+                if (aux != "") {
+                    rb = Integer.parseInt(aux) - 1;
+                    if (!reorderBuffer.getValue(rb).equals("")) {
+                        if (reorderBuffer.getState(rb).equals("Execução")) {
+                            reorderBuffer.setState(rb, "Write Result");
+                        }
+                    }
                 }
             }
         }
+    }
+
+    static void commit(ReorderBuffer reorderBuffer, ReservationStations reservationStations,
+            FPRegisterStatus registerStatus, InstructionStatus instructionStatus) {
+
+        int index = 0;
+        if (!reorderBuffer.getValue(index).equals("") && reorderBuffer.getState(0).equals("Write Result")) {
+            reorderBuffer.setState(index, "Commit");
+        }
+
+    }
+
+    static void posCommit(ReorderBuffer reorderBuffer, ReservationStations reservationStations,
+            FPRegisterStatus registerStatus, InstructionStatus instructionStatus) {
+
+        if (reorderBuffer.getState(0).equals("Commit")) {
+            reorderBuffer.deleteRow();
+        }
+
     }
 
     static int testReservationStation(String str,
@@ -199,7 +229,7 @@ public class Simulation {
     }
 
     static void setJK(ReservationStations reservationStations, ReorderBuffer reorderBuffer, String[] str, int pos,
-            int rb, int rs) {
+            int rs) {
 
         Boolean bool = true;
         for (int i = 0; i < reorderBuffer.reorderList.size(); i++) {
