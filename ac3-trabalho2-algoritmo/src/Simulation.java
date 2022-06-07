@@ -18,8 +18,8 @@ public class Simulation {
 
         String nextInstruction = "";
 
-        // posCommit(reorderBuffer, reservationStations, registerStatus,
-        // instructionStatus);
+        posCommit(reorderBuffer, reservationStations, registerStatus,
+                instructionStatus);
 
         commit(reorderBuffer, reservationStations, registerStatus,
                 instructionStatus);
