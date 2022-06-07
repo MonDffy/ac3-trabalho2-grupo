@@ -81,11 +81,19 @@ public class ReorderBuffer {
     }
 
     void setReorderList(String ent) {
-        value.add(ent);
+        reorderList.add(ent);
+    }
+
+    void removeFromList(String s) {
+        for (int i = 0; i < reorderList.size(); i++) {
+            if (reorderList.get(i) == s) {
+                reorderList.remove(i);
+            }
+        }
     }
 
     String getReorderList(int index) {
-        return value.get(index);
+        return reorderList.get(index);
     }
 
     ReorderBuffer() {
@@ -96,9 +104,9 @@ public class ReorderBuffer {
             String str = i + 1 + "";
             entry.add(i, str);
             busy.add(i, "No");
-            state.add(i, " ");
-            destination.add(i, " ");
-            value.add(i, " ");
+            state.add(i, "");
+            destination.add(i, "");
+            value.add(i, "");
         }
     }
 

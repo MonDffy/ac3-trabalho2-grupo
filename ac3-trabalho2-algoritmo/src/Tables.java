@@ -149,8 +149,8 @@ public class Tables {
         String row2 = getRow2(reservationStations);
         String column3 = getColumn3(registerStatus);
         String row3 = getRow3(registerStatus);
-        String column4 = getColumn4(instructionStatus);
-        String row4 = getRow4(instructionStatus);
+        // String column4 = getColumn4(instructionStatus);
+        // String row4 = getRow4(instructionStatus);
 
         String text = "<html>" +
         // "<head>" +
