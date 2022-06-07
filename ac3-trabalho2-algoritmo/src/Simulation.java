@@ -1,3 +1,4 @@
+import java.util.Random;
 
 public class Simulation {
 
@@ -13,8 +14,6 @@ public class Simulation {
     static void next(InstructionStatus instructionStatus, ReorderBuffer reorderBuffer,
             ReservationStations reservationStations, FPRegisterStatus registerStatus) {
 
-        // Despacho
-
         nextCount++;
 
         String nextInstruction = "";
@@ -28,6 +27,7 @@ public class Simulation {
         writeResult(reorderBuffer, reservationStations, registerStatus, instructionStatus);
 
         execucao(reorderBuffer, reservationStations, registerStatus, instructionStatus);
+
         if (is < 6) {
             for (int j = 0; j < 6; j++) {
                 if (reorderBuffer.getNotBusy() != -1) {
@@ -130,7 +130,6 @@ public class Simulation {
                 }
                 if (!reorderBuffer.getValue(rb).equals("")) {
                     reorderBuffer.removeFromList(reorderBuffer.getDestination(rb));
-                    System.out.println(str[0] + "  " + rs);
                     setJK(reservationStations, reorderBuffer, str, pos, rs);
                     if (reorderBuffer.getState(rb).equals("Execução")) {
                         reorderBuffer.setState(rb, "Write Result");
@@ -296,4 +295,8 @@ public class Simulation {
         reorderBuffer.setValue(rb, x);
     }
 
+    static Boolean randomBool() {
+        Random ran = new Random();
+        return ran.nextBoolean();
+    }
 }
