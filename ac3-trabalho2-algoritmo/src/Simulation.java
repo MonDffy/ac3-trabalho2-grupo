@@ -32,6 +32,8 @@ public class Simulation {
         }
         execucao(reorderBuffer, reservationStations, registerStatus, instructionStatus);
 
+        // writeResult(reorderBuffer, reservationStations, registerStatus, instructionStatus);
+
         // execucao(nextInstruction);
 
         // Escrita
@@ -97,6 +99,37 @@ public class Simulation {
             }
         }
 
+    }
+
+    static void writeResult(ReorderBuffer reorderBuffer, ReservationStations reservationStations,
+            FPRegisterStatus registerStatus, InstructionStatus instructionStatus) {
+
+        int rb;
+        int entry;
+        String instrucao;
+        String[] str;
+        int pos;
+        for (int rs = 0; rs < reservationStations.name.length; rs++) {
+            rb = Integer.parseInt(reservationStations.getDest(rs));
+            instrucao = reorderBuffer.getInstruction(rb);
+            str = instrucao.split("[ .() ]", 5);
+            if (str[0].equals("STR")) {
+                pos = 2;
+            } else {
+                pos = 1;
+            }
+            if (reservationStations.getQj(rs) != "") {
+                entry = Integer.parseInt(reservationStations.getQj(rs));
+                if (reorderBuffer.getValue(rb) != "") {
+                    System.out.println(rb);
+
+                    setJK(reservationStations, reorderBuffer, str, pos, rb, rs);
+                }
+            }
+            if (reservationStations.getQk(rs) != "") {
+
+            }
+        }
     }
 
     static int testReservationStation(String str,
