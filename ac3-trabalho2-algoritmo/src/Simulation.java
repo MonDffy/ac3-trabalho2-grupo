@@ -55,6 +55,9 @@ public class Simulation {
         String[] str = nextInstruction.split("[ .() ]", 5);
         int rb = reorderBuffer.getNotBusy();
         int rs = testReservationStation(str[0], reservationStations, reorderBuffer, rb);
+        if (str[0].equals("BR")) {
+            reorderBuffer.setJump(randomBool());
+        }
         if (rb != -1 && (rs != -1 || str[0].equals("BR"))) {
             reorderBuffer.setInstructions(rb, nextInstruction);
             reorderBuffer.setBusy(rb, "Yes");
@@ -185,6 +188,13 @@ public class Simulation {
 
         if (reorderBuffer.getState(0).equals("Commit")) {
             reorderBuffer.deleteRow();
+            for (int i = 0; i < reservationStations.dest.length; i++) {
+                System.out.println(reservationStations.dest.length);
+                if (reservationStations.getBusy(i) == "Yes") {
+                    int aux = Integer.parseInt(reservationStations.getDest(i));
+                    reservationStations.setDest(i, "" + --aux);
+                }
+            }
         }
 
     }

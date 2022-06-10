@@ -105,11 +105,7 @@ public class ReorderBuffer {
             destination.set(i, destination.get(i + 1));
             value.set(i, value.get(i + 1));
         }
-        // instruction.set(5, "");
-        // busy.set(5, "No");
-        // state.set(5, "");
-        // destination.set(5, "");
-        // value.set(5, "");
+        busy.set(5, "No");
     }
 
     public Boolean getJump() {
@@ -118,6 +114,7 @@ public class ReorderBuffer {
 
     public void setJump(Boolean jump) {
         this.jump = jump;
+        System.out.println("Jump: " + jump);
     }
 
     ReorderBuffer() {
@@ -134,4 +131,4 @@ public class ReorderBuffer {
         }
     }
 
-}
+};
