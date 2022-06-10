@@ -11,7 +11,7 @@ public class ReorderBuffer {
     ArrayList<String> destination = new ArrayList<String>();
     ArrayList<String> value = new ArrayList<String>();
     ArrayList<String> reorderList = new ArrayList<String>();
-    Boolean jump;
+    ArrayList<Boolean> jump = new ArrayList<>();
 
     String getTitle() {
         return title;
@@ -99,22 +99,27 @@ public class ReorderBuffer {
 
     void deleteRow() {
         for (int i = 0; i < instruction.size() - 1; i++) {
-            instruction.set(i, instruction.get(i + 1));
             busy.set(i, busy.get(i + 1));
+            instruction.set(i, instruction.get(i + 1));
             state.set(i, state.get(i + 1));
             destination.set(i, destination.get(i + 1));
             value.set(i, value.get(i + 1));
+            jump.set(i, jump.get(i + 1));
         }
+        instruction.set(5, "");
         busy.set(5, "No");
+        state.set(5, "");
+        destination.set(5, "");
+        value.set(5, "");
+        jump.set(5, false);
     }
 
-    public Boolean getJump() {
-        return jump;
+    public Boolean getJump(int index) {
+        return jump.get(index);
     }
 
-    public void setJump(Boolean jump) {
-        this.jump = jump;
-        System.out.println("Jump: " + jump);
+    public void setJump(int index, Boolean ent) {
+        jump.set(index, ent);
     }
 
     ReorderBuffer() {
@@ -128,6 +133,7 @@ public class ReorderBuffer {
             state.add(i, "");
             destination.add(i, "");
             value.add(i, "");
+            jump.add(i, false);
         }
     }
 

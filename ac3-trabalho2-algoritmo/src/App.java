@@ -6,6 +6,7 @@
     -   Fazer a simulação;
     -   Criar teste do arquivo de entrada;
     - Quantos ciclos gastam cada instrução? 
+    -   Tore não vai pra estação de reserva, apenas para o reorder buffer
 */
 
 import java.util.ArrayList;

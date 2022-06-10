@@ -109,6 +109,19 @@ public class ReservationStations {
         return count[index];
     }
 
+    void deleteRow() {
+        for (int i = 0; i < name.length; i++) {
+            busy[i] = "No";
+            op[i] = "";
+            vj[i] = "";
+            vk[i] = "";
+            qj[i] = "";
+            qk[i] = "";
+            dest[i] = "";
+            a[i] = "";
+        }
+    }
+
     ReservationStations() {
 
         name[0] = "Load1";

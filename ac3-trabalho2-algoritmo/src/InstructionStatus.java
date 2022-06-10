@@ -8,7 +8,7 @@ public class InstructionStatus {
     String[] column = { "Instruction", "Status" };
     ArrayList<String> instruction = new ArrayList<String>();
     ArrayList<String> status = new ArrayList<String>();
-    int inst;
+    int inst, inst2;
 
     void setInstructions(ArrayList<String> input) {
         for (int i = 0; i < input.size(); i++) {
@@ -32,6 +32,18 @@ public class InstructionStatus {
 
     String getInstruction(int index) {
         return instruction.get(index);
+    }
+
+    void setInst(int ent) {
+        inst = ent;
+    }
+
+    void setInst2(int ent) {
+        inst2 = ent;
+    }
+
+    int getInst2() {
+        return inst2;
     }
 
     String getNextInstruction() {
