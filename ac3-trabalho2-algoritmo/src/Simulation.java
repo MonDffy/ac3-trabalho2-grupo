@@ -4,8 +4,9 @@ public class Simulation {
 
     static int nextCount = -1;
     static int is = -1;
-    static int jumpValue = 3;
+    static int jumpValue;
     static int countInst = -1;
+    static Boolean jump = false;
     // static int rename = -1;
 
     // static void previous(JLabel label, InstructionStatus instructionStatus,
@@ -20,7 +21,6 @@ public class Simulation {
         nextCount++;
 
         String nextInstruction = "";
-        Boolean jump = false;
 
         posCommit(reorderBuffer, reservationStations, registerStatus,
                 instructionStatus);
@@ -55,7 +55,7 @@ public class Simulation {
         // } else {
         if (jump) {
             for (int i = 0; i < jumpValue; i++) {
-                nextInstruction = instructionStatus.getNextInstruction();
+                instructionStatus.getNextInstruction();
                 countInst++;
                 jump = false;
             }
@@ -121,7 +121,7 @@ public class Simulation {
         String instruction;
         String[] str;
         for (int rs = 0; rs < reservationStations.name.length; rs++) {
-            if (reservationStations.getVj(rs) != "") {
+            if (reservationStations.getVj(rs) != "" && !reorderBuffer.getInstruction(0).contains("BEQ")) {
                 rb = Integer.parseInt(reservationStations.getDest(rs)) - 1;
                 instruction = reorderBuffer.getInstruction(rb);
                 str = instruction.split("[ .() ]", 5);
@@ -142,14 +142,24 @@ public class Simulation {
         int index = 0;
         instruction = reorderBuffer.getInstruction(index);
         if (instruction.contains("BEQ") && reorderBuffer.getState(index).equals("Despacho")) {
+
             reorderBuffer.setState(index, "Execução");
             Boolean bool = randomBool();
+            System.out.println("Execução jump: " + bool);
             if (reorderBuffer.getJump(index) != bool) {
-                for (int i = index; i < 5; i++) {
-                    reorderBuffer.deleteRow();
-                    reservationStations.deleteRow();
+                if (!bool) {
+                    for (int i = index; i < 5; i++) {
+                        reorderBuffer.deleteRow();
+                        reservationStations.deleteRow();
+                    }
+                    instructionStatus.setInst(instructionStatus.getInst2());
+                } else {
+                    for (int i = 0; i < jumpValue; i++) {
+                        instructionStatus.getNextInstruction();
+                        countInst++;
+                    }
                 }
-                instructionStatus.setInst(instructionStatus.getInst2());
+
             }
         }
     }

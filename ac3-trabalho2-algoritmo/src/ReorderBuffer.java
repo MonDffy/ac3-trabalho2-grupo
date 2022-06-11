@@ -120,6 +120,7 @@ public class ReorderBuffer {
 
     public void setJump(int index, Boolean ent) {
         jump.set(index, ent);
+        System.out.println("Jump " + jump.get(index));
     }
 
     ReorderBuffer() {

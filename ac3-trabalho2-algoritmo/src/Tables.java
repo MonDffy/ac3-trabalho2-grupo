@@ -170,7 +170,7 @@ public class Tables {
 
                 "<style>" +
                 "div {" +
-                "font-size:100%" +
+                "font-size:150%" +
                 "}" +
                 // "#d1 {" +
                 // "background-color: blue;" +
