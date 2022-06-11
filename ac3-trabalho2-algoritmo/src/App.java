@@ -3,8 +3,8 @@
             1 - git add .
             2 - git commit -m ""
             3 - git push -u origin main
-    -   Renomeação de buffer
-    -   Bug na dependecia 
+    -   Bug
+    -   Finalização 
 */
 
 import java.util.ArrayList;
