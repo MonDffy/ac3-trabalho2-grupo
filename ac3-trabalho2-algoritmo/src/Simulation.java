@@ -98,7 +98,7 @@ public class Simulation {
             reorderBuffer.setInstructions(rb, nextInstruction);
             reorderBuffer.setBusy(rb, "Yes");
             reorderBuffer.setDestination(rb, str[pos]);
-            if (!str[0].equals("BEQ")) {
+            if (!str[0].equals("BEQ") && !str[0].equals("STR")) {
                 reservationStations.setBusy(rs, "Yes");
                 reservationStations.setOp(rs, str[0]);
                 reservationStations.setDest(rs, reorderBuffer.getEntry(rb));
@@ -142,7 +142,6 @@ public class Simulation {
         int index = 0;
         instruction = reorderBuffer.getInstruction(index);
         if (instruction.contains("BEQ") && reorderBuffer.getState(index).equals("Despacho")) {
-
             reorderBuffer.setState(index, "Execução");
             Boolean bool = randomBool();
             System.out.println("Execução jump: " + bool);
@@ -216,7 +215,7 @@ public class Simulation {
                 aux = reservationStations.getDest(rs).replace("#", "");
                 if (aux != "") {
                     rb = Integer.parseInt(aux) - 1;
-                    if (!reorderBuffer.getValue(rb).equals("")) {
+                    if (rb > -1 && !reorderBuffer.getValue(rb).equals("")) {
                         if (reorderBuffer.getState(rb).equals("Execução")) {
                             reorderBuffer.setState(rb, "Write Result");
                         }
@@ -282,17 +281,27 @@ public class Simulation {
                 for (int j = 2; j < 5; j++) {
                     busy = reservationStations.getBusy(j);
                     if (busy == "No") {
-                        reservationStations.setCount(j, 3);
+                        reservationStations.setCount(j, 2);
                         x = j;
                         break;
                     }
                 }
                 break;
-            case "MUL", "SDIV":
+            case "MUL":
                 for (int j = 5; j < 7; j++) {
                     busy = reservationStations.getBusy(j);
                     if (busy == "No") {
-                        reservationStations.setCount(j, 2);
+                        reservationStations.setCount(j, 6);
+                        x = j;
+                        break;
+                    }
+                }
+                break;
+            case "SDIV":
+                for (int j = 5; j < 7; j++) {
+                    busy = reservationStations.getBusy(j);
+                    if (busy == "No") {
+                        reservationStations.setCount(j, 12);
                         x = j;
                         break;
                     }

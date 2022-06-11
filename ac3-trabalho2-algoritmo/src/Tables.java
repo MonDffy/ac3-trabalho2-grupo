@@ -170,7 +170,7 @@ public class Tables {
 
                 "<style>" +
                 "div {" +
-                "font-size:150%" +
+                "font-size:125%" +
                 "}" +
                 // "#d1 {" +
                 // "background-color: blue;" +
@@ -212,6 +212,7 @@ public class Tables {
                 row1 +
                 "</table>" +
                 "</div>" +
+                "<br>" +
                 "<div id='d3' class = 'col-6'>" +
                 "<table border='1'>" +
                 "<tr>" +
@@ -223,6 +224,7 @@ public class Tables {
                 row2 +
                 "</table>" +
                 "</div>" +
+                "<br>" +
                 "<div id='d4' class = 'col-6'>" +
                 "<table border='1'>" +
                 "<tr>" +

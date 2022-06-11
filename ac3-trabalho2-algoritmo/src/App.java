@@ -3,16 +3,13 @@
             1 - git add .
             2 - git commit -m ""
             3 - git push -u origin main
-    -   Fazer a simulação;
-    -   Criar teste do arquivo de entrada;
-    - Quantos ciclos gastam cada instrução? 
-    -   Tore não vai pra estação de reserva, apenas para o reorder buffer
+    -   Renomeação de buffer
+    -   Bug na dependecia 
 */
 
 import java.util.ArrayList;
 
 public class App {
-
     static void verificaDependencia(ArrayList<String[]> instructions) {
 
         ArrayList<String> podeConterDependencia = new ArrayList<>();
