@@ -39,6 +39,7 @@ public class Simulation {
 
         execucao(reorderBuffer, reservationStations, registerStatus, instructionStatus);
 
+        
         // if (is < 6) {
         // for (int j = 0; j < 6; j++) {
         // if (reorderBuffer.getNotBusy() != -1) {
@@ -77,6 +78,7 @@ public class Simulation {
                     String[] str = nextInstruction.split("[ .() ]", 5);
                     jumpValue = Integer.parseInt(str[3]);
                     jump = randomBool();
+                    jump = false; // apagar
                     reorderBuffer.setJump(reorderBuffer.getNotBusy(), jump);
                 }
                 is++;
@@ -85,6 +87,18 @@ public class Simulation {
         }
         correcao(reorderBuffer, reservationStations, registerStatus, instructionStatus);
         // }
+
+        Boolean bool = false;
+        for (int i = 0; i < reorderBuffer.getEntrySize(); i++) {
+            if (!reorderBuffer.getInstruction(i).equals("")) {
+                break;
+            } else {
+                bool = true;
+            }
+        }
+        if (bool == true) {
+            Swing.fim();
+        }
 
     }
 
@@ -105,31 +119,31 @@ public class Simulation {
         // str[0] = "R" + rename + 1;
         // }
         Boolean bool = true;
-        for (int i = 0; i < renamed.length; i++) {
-            if (str[1].equals(renamed[i][0])) {
-                str[1] = renamed[i][1];
-                bool = false;
-            }
-            if (str[2].equals(renamed[i][0])) {
-                str[2] = renamed[i][1];
-                bool = false;
-            }
-            if (str[3].equals(renamed[i][0])) {
-                str[3] = renamed[i][1];
-                bool = false;
-            }
-            nextInstruction = str[0] + " " + str[1] + "." + str[2] + "." + str[3];
-        }
-        if (reorderBuffer.reorderList.contains(str[pos])) {
-            if (true) {
-                String novo = "R" + rename;
-                renamed[rename][0] = str[pos];
-                renamed[rename][1] = novo;
-                str[pos] = novo;
-                rename++;
-                nextInstruction = str[0] + " " + str[1] + "." + str[2] + "." + str[3];
-            }
-        }
+        // for (int i = 0; i < renamed.length; i++) {
+        // if (str[1].equals(renamed[i][0])) {
+        // str[1] = renamed[i][1];
+        // bool = false;
+        // }
+        // if (str[2].equals(renamed[i][0])) {
+        // str[2] = renamed[i][1];
+        // bool = false;
+        // }
+        // if (str[3].equals(renamed[i][0])) {
+        // str[3] = renamed[i][1];
+        // bool = false;
+        // }
+        // nextInstruction = str[0] + " " + str[1] + "." + str[2] + "." + str[3];
+        // }
+        // if (reorderBuffer.reorderList.contains(str[pos])) {
+        // if (true) {
+        // String novo = "R" + rename;
+        // renamed[rename][0] = str[pos];
+        // renamed[rename][1] = novo;
+        // str[pos] = novo;
+        // rename++;
+        // nextInstruction = str[0] + " " + str[1] + "." + str[2] + "." + str[3];
+        // }
+        // }
         if ((rb != -1 && (rs != -1 || str[0].equals("BEQ"))) && reorderBuffer.getBusy(5).equals("No")) {
             reorderBuffer.setInstructions(rb, nextInstruction);
             reorderBuffer.setBusy(rb, "Yes");
@@ -156,6 +170,12 @@ public class Simulation {
         int rb;
         String[] str;
         String instruction;
+        for (int i = 0; i < reorderBuffer.getEntrySize(); i++) {
+            str = reorderBuffer.getInstruction(i).split("[ .() ]", 5);
+            if (str[0].equals("STR") && reorderBuffer.getState(0).equals("Despacho")) {
+                reorderBuffer.setState(i, "Execução");
+            }
+        }
         for (int rs = 0; rs < reservationStations.name.length; rs++) {
             if (reservationStations.getBusy(rs).equals("Yes")) {
                 if (reservationStations.getVj(rs) != "" && !reorderBuffer.getInstruction(0).contains("BEQ")
@@ -184,6 +204,7 @@ public class Simulation {
         if (instruction.contains("BEQ") && reorderBuffer.getState(index).equals("Despacho")) {
             reorderBuffer.setState(index, "Execução");
             Boolean bool = randomBool();
+            bool = true;
             System.out.println("Jump real: " + bool);
             if (reorderBuffer.getJump(index) != bool) {
                 if (!bool) {
@@ -213,6 +234,12 @@ public class Simulation {
         String aux;
         String[] str;
         int pos;
+        for (int i = 0; i < reorderBuffer.getEntrySize(); i++) {
+            str = reorderBuffer.getInstruction(i).split("[ .() ]", 5);
+            if (str[0].equals("STR") && reorderBuffer.getState(0).equals("Execução")) {
+                reorderBuffer.setState(i, "Write Result");
+            }
+        }
         for (int rs = 0; rs < reservationStations.name.length; rs++) {
             if (reservationStations.getQj(rs) != "") {
                 aux = reservationStations.getQj(rs).replace("#", "");
@@ -289,6 +316,12 @@ public class Simulation {
             if ((reorderBuffer.getInstruction(index).contains("BEQ")
                     && reorderBuffer.getState(index).equals("Execução"))) {
                 reorderBuffer.setState(index, "Commit");
+            }
+        }
+        for (int i = 0; i < reorderBuffer.getEntrySize(); i++) {
+            String str[] = reorderBuffer.getInstruction(i).split("[ .() ]", 5);
+            if (str[0].equals("STR") && reorderBuffer.getState(0).equals("Write Result")) {
+                reorderBuffer.setState(i, "Commit");
             }
         }
 
@@ -467,9 +500,6 @@ public class Simulation {
             if (reservationStations.getBusy(i).equals("Yes")) {
                 if (reservationStations.getQj(i) != "") {
                     j = Integer.parseInt(reservationStations.getQj(i).replace("#", ""));
-                    System.out.println("Teste1: " + reorderBuffer.getInstruction(j));
-                    System.out.println("Teste2: " + reservationStations.getDest(i));
-                    System.out.println("Teste3: " + i);
                     if (reorderBuffer.getValue(j) != "") {
                         str = reorderBuffer.getInstruction(j).split("[ .() ]", 5);
                         reservationStations.setVj(i, str[2]);
