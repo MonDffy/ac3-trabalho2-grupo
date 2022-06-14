@@ -40,7 +40,7 @@ No Simulation.java, há toda a lógica da execução do algoritmo de Tomasulo.
 
 No Swing.java, está código da interface gráfica.
 
-No Tables.java, O esqueleto das tabelas presente na interface gráfica estão presentes. 
+No Tables.java, o esqueleto das tabelas presente na interface gráfica estão presentes. 
 
 --------------------------------------------------------------------------------------------------------
 Execução
