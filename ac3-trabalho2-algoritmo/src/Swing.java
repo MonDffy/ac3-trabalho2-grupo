@@ -17,10 +17,8 @@ public class Swing {
             ReservationStations reservationStations, FPRegisterStatus registerStatus) {
 
         JFrame frame = new JFrame("Simulador");
-        // frame.setLocationRelativeTo(null);
         JLabel label = new JLabel();
         JButton nextButton = new JButton("Next");
-        // JButton previousButton = new JButton("Previous");
         JPanel panel = new JPanel();
 
         Toolkit kit = Toolkit.getDefaultToolkit();
@@ -35,12 +33,6 @@ public class Swing {
 
         panel.add(label);
         panel.add(nextButton);
-        // panel.add(previousButton);
-
-        // previousButton.addActionListener(new ActionListener() {
-        // public void actionPerformed(ActionEvent event) {
-        // }
-        // });
         nextButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 Simulation.next(instructionStatus, reorderBuffer, reservationStations, registerStatus);

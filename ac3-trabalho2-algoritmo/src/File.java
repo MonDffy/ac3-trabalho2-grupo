@@ -33,16 +33,6 @@ public class File {
 
     static void testFile(ArrayList<String> input) {
 
-  //      for(int i = 0;i<=input.size();i++){
-  //      String[] entrada = input.get(i).split(" ");   
-  //  }
-        // Boolean valid = true;
-        // if (valid = true) {
-
-        // } else {
-
-        // }
-
     }
 
 }

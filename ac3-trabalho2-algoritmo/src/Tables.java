@@ -13,7 +13,7 @@ public class Tables {
 
     static String getRow1(ReorderBuffer reorderBuffer) {
         String text = "";
-        for (int i = 0; i < reorderBuffer.getEntrySize(); i++) {
+        for (int i = 0; i < reorderBuffer.getEntrySize() - 1; i++) {
             text += "<tr>" +
                     "<td>" +
                     reorderBuffer.getEntry(i) +
@@ -52,7 +52,7 @@ public class Tables {
 
     static String getRow2(ReservationStations reservationStations) {
         String text = "";
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 8; i++) {
             text += "<tr>" +
                     "<td>" +
                     reservationStations.getName(i) +
@@ -149,58 +149,15 @@ public class Tables {
         String row2 = getRow2(reservationStations);
         String column3 = getColumn3(registerStatus);
         String row3 = getRow3(registerStatus);
-        // String column4 = getColumn4(instructionStatus);
-        // String row4 = getRow4(instructionStatus);
 
         String text = "<html>" +
-        // "<head>" +
-        // "<title>Bootstrap Example</title>" +
-        // "<meta charset='utf-8>'" +
-        // "<meta name='viewport' content='width=device-width, initial-scale=1'>" +
-        // "<link rel='stylesheet'
-        // href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css'>"
-        // +
-        // "<script>" +
-        // src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>"
-        // +
-        // "<script>" +
-        // src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js'></script>"
-        // +
-        // "</head>" +
 
                 "<style>" +
                 "div {" +
-                "font-size:125%" +
+                "font-size:175%" +
                 "}" +
-                // "#d1 {" +
-                // "background-color: blue;" +
-                // "display: inline;" +
-                // "}" +
-                // "#d2 {" +
-                // "background-color: red;" +
-                // "display: inline;" +
-                // "}" +
-                // "#d3 {" +
-                // "background-color: green;" +
-                // "display: inline;" +
-                // "}" +
-                // "#d4 {" +
-                // "background-color: yellow;" +
-                // "display: inline;" +
-                // "}" +
 
                 "</style>" +
-                // "<div id='d1' class = 'col-1'>" +
-                // "<table border='1' style = 'font-size:70%'>" +
-                // "<tr>" +
-                // "<th colsplan='4'>" +
-                // "InstructionStatus.getTitle()" +
-                // "</th>" +
-                // "</tr>" +
-                // column4 +
-                // row4 +
-                // "</table>" +
-                // "</div>" +
                 "<div id='d2' class = 'col-11'  face='Times'>" +
                 "<table border='1'>" +
                 "<tr>" +

@@ -2,16 +2,16 @@ public class ReservationStations {
 
     String title = "Reservation Stations";
     String[] column = { "Name", "Busy", "Op", "Vj", "Vk", "Qj", "Qk", "Dest", "A" };
-    String name[] = new String[7];
-    String busy[] = new String[7];
-    String op[] = new String[7];
-    String vj[] = new String[7];
-    String vk[] = new String[7];
-    String qj[] = new String[7];
-    String qk[] = new String[7];
-    String dest[] = new String[7];
-    String a[] = new String[7];
-    int[] count = new int[7];
+    String name[] = new String[8];
+    String busy[] = new String[8];
+    String op[] = new String[8];
+    String vj[] = new String[8];
+    String vk[] = new String[8];
+    String qj[] = new String[8];
+    String qk[] = new String[8];
+    String dest[] = new String[8];
+    String a[] = new String[8];
+    int[] count = new int[8];
 
     String getTitle() {
         return title;
@@ -131,7 +131,8 @@ public class ReservationStations {
         name[4] = "Add3";
         name[5] = "Mult1";
         name[6] = "Mult2";
-        for (int i = 0; i < 7; i++) {
+        name[7] = "BEQ";
+        for (int i = 0; i < 8; i++) {
             busy[i] = "No";
             op[i] = "";
             vj[i] = "";

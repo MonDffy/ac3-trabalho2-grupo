@@ -44,23 +44,7 @@ public class App {
         instructions = File.split(input);
 
         instructionStatus.setInstructions(input);
-        // try {
         Swing.tela(instructions, instructionStatus, reorderBuffer, reservationStations, registerStatus);
-        // } catch (Exception e) {
-        // Swing.error();
-        // }
-
-        // reorderBuffer.setInstructions(input);
-
-        // reorderBuffer.setDestination(instructions);
-
-        // testar o split
-        // for (int i = 0; i < instructions.size(); i++) {
-        // for (int j = 0; j < instructions.get(i).length; j++) {
-        // System.out.println("linha " + i + " coluna " + j + " " +
-        // instructions.get(i)[j] + " - ");
-        // }
-        // }
 
     }
 }
