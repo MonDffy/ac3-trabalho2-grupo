@@ -1,5 +1,5 @@
 # ac3-trabalho2-grupo
-Esse repositório foi criado no intuito de demonstrar o algoritmo de Tomasulo utilizando de instruções 
+Esse repositório foi criado no intuito de demonstrar o algoritmo de Tomasulo utilizando uma simulação de instruções 
 de uma arquitetura ARM.
 
 Instruções
