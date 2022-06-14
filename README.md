@@ -41,12 +41,14 @@ No Simulation.java, há toda a lógica da execução do algortimo de tomasulo.
 No Swing.java, está código da interface gráfica.
 
 No Tables.java, O esqueleto das tabelas presente na interface gráfica estão presentes. 
+
 --------------------------------------------------------------------------------------------------------
 Execução
 --------------------------------------------------------------------------------------------------------
 Em seguida é necessário apenas executar o programa e clicar em "next" para cada ciclo até a finalização.
 
 Quando finalizar, será aberta uma tela com um botão que fechará o programa.
+
 --------------------------------------------------------------------------------------------------------
 
 
