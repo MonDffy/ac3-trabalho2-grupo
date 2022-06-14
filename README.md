@@ -32,3 +32,4 @@ Em seguida é necessário apenas executar o programa e clicar em "next" para cad
 Quando finalizar, será aberta uma tela com um botão que fechará o programa.
 --------------------------------------------------------------------------------------------------------
 
+
