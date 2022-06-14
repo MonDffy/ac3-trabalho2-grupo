@@ -6,6 +6,7 @@ Instruções
 --------------------------------------------------------------------------------------------------------
 Para introduzir as instruções no simulador é necessário editar o arquivo input.txt,
 inserindo uma quebra de linha em cada instrução, de modo que cada instrução fique em uma linha.
+
 ADD XN.XN.XN
 
 SUB XN.XN.XN
@@ -19,6 +20,7 @@ LDR XN(XN)
 STR XN(XN)
 
 BEQ XN.XN.XN
+
 --------------------------------------------------------------------------------------------------------
 Arquivos
 --------------------------------------------------------------------------------------------------------
