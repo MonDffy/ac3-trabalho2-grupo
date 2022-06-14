@@ -32,11 +32,11 @@ No FPRegisterStatus.java, mostra o status de registro.
 
 No InstructionStatus.java, serão definidas as instruções e seus status.
 
-No ReorderBuffer.java, há a definição do Buffer de Reodernação.
+No ReorderBuffer.java, há a definição do Buffer de Reordenação.
 
 No ReservationStations.java, há a definição das estações de reserva.
 
-No Simulation.java, há toda a lógica da execução do algortimo de tomasulo.
+No Simulation.java, há toda a lógica da execução do algoritmo de Tomasulo.
 
 No Swing.java, está código da interface gráfica.
 
